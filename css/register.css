@@ -1,0 +1,12 @@
+.login-zone {
+    width: 400px;
+    height: 100px;
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%, -50%);
+}
+
+.input-box {
+    width: 100%;
+}

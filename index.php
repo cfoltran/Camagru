@@ -1,20 +1,15 @@
-<?php
-    echo "I m in";
-	function connect() {
-        $host = "192.168.99.100:3307";
-        $user = "root";
-        $pass = "clemclem";
-        $db = "camagrudb";
-    
-        $co = mysqli_connect($host, $user, $pass, $db);
-        if (mysqli_connect_errno($co))
-        {
-            echo "Echec de connexion à la base de données : " . mysqli_connect_error();
-            return (NULL);
-        }
-        return $co;
-        }
-        $co = connect();
-        // mysqli_query($co, "INSERT INTO USERS VALUE(id_user, 'clement', 'foltran', 'clfoltra', 'clfoltra@student.42.fr', 'clemclem')");
-    
-?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/stylesheet.css" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <title>Camagru</title>
+</head>
+<body>
+    <?php include ('partials/menu.php'); ?>
+    <?php include ('partials/footer.php'); ?>
+</body>
+</html>
