@@ -1,7 +1,7 @@
 <?php
     function connect() {
-        $host = "localhost:3306";
-        $user = "root";
+        $host = "localhost:3307";
+        $user = "adm";
         $passwd = "clemclem";
 
         try {
@@ -10,8 +10,6 @@
         } catch(PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
-        $req = "SELECT * FROM USERS WHERE login='$login'";
-        $res = $co->query($req);
         return ($co);
     }
 ?>

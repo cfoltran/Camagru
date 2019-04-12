@@ -40,7 +40,8 @@ button:hover {
 /* ================================================= */
 
 .nav-menu {
-    overflow: hidden;
+  overflow: hidden;
+  width: 100%;
 }
 
 .nav-menu a:first-child {
@@ -68,6 +69,10 @@ button:hover {
 
 .nav-menu .icon {
   display: none;
+}
+
+.nav-menu .user {
+  float: right;
 }
   
 @media screen and (max-width: 600px) {
