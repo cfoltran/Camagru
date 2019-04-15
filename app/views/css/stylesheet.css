@@ -161,7 +161,8 @@ footer {
 
 #video {
   width: 100%;
-  max-height: 600px;
+  max-height: 640px;
+  padding: 1%;
 }
 
 #canvas {
@@ -169,7 +170,7 @@ footer {
   padding: 2%;
 }
 
-.btn-cam {
+.btn-round {
   background-color: rgba(128, 128, 128, 0.589);
   color: black;
   width: 40px;
@@ -177,7 +178,7 @@ footer {
   margin-right: 5px;
 }
 
-.btn-cam:nth-child(2) {
+.btn-round:nth-child(2) {
   display: none;
 }
 

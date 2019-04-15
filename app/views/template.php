@@ -12,14 +12,17 @@
 <body>
     <div class="nav-menu" id="menu">
         <a href="<?= URL ?>">Camagru</a>
-        <?php
-            if (!isset($_SESSION['loggued_on_user'])) {
-                echo '<a class="user" href='.URL.'?url=login>Sign in</a>';
-                echo '<a class="user" href='.URL.'?url=register>Register</a>';
-            } else {
-                echo '<a class="user" href="/register.php"><i class=fa fa-user"></i></a>';
-            }
-        ?>
+        <?php 
+        session_start();
+        if (!isset($_SESSION['login'])): ?>
+            <a href="<?= URL ?>?url=login"><i class="fas fa-camera"></i> Take a pic</a>
+            <a class="user" href="<?= URL ?>?url=login">Sign in</a>
+            <a class="user" href="<?= URL ?>?url=register">Register</a>
+        <?php else: ?>
+            <a class="user" href="<?= URL ?>?url=login&submit=logout"><i class="fas fa-sign-out-alt"></i></a>
+            <a class="user" href="/register.php"><i class="fas fa-user-cog"></i></a>
+            <a href="<?= URL ?>?url=camagru"><i class="fas fa-camera"></i> Take a pic</a>
+        <?php endif; ?>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
         </a>
@@ -28,7 +31,7 @@
         function myFunction() {
             var x = document.getElementById("menu");
             if (x.className === "nav-menu") {
-                x.className += " responsive";
+                x.className += "responsive";
             } else {
                 x.className = "nav-menu";
             }

@@ -8,8 +8,10 @@
         public function __construct($url) {
             if (isset($url) && count($url) > 1) {
                 throw new Exception('Page not found');
-            } else if ($_GET['submit'] === 'ok') {
+            } else if ($_GET['submit'] === 'login') {
                 $this->_login();
+            } else if ($_GET['submit'] === 'logout') {
+                $this->_logout();
             } else {
                 $this->loginView();
             }
@@ -39,10 +41,20 @@
                 } else if ($logReq === 2) {
                     $this->_error("Invalid password");
                 } else {
+                    session_start();
+                    $_SESSION['login'] = $login;
                     $this->_view = new View('Camagru');
                     $this->_view->generate(array());
                 }
             }
+        }
+
+        private function _logout() {
+            session_start();
+            $login = $_SESSION['login'];
+            $_SESSION['login'] = null;
+            $this->_view = new View('Login');
+            $this->_view->generate(array('info' => "See you <b>$login</b>"));
         }
     }  
 ?>
