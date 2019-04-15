@@ -13,7 +13,9 @@ CREATE TABLE USERS(
         lastname  Varchar (50) NOT NULL ,
         login     Varchar (50) NOT NULL ,
         email     Varchar (50) NOT NULL ,
-        passwd  Varchar (500) NOT NULL
+        passwd  Varchar (500) NOT NULL ,
+        confirmKey Varchar (255) NOT NULL ,
+        confirm Boolean NOT NULL DEFAULT false
 	,CONSTRAINT USERS_PK PRIMARY KEY (id_user)
 )ENGINE=InnoDB;
 

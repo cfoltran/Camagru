@@ -1,7 +1,7 @@
 <?php
     class View {
         private $_file;
-        private $_t;
+        private $_t = 'Camagru';
 
         public function __construct($action) {
             $this->_file = 'views/view'.$action.'.php';
