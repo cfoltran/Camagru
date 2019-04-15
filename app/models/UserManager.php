@@ -23,5 +23,20 @@
             $req->execute();
             $req->closeCursor();
         }
+
+        public function login($login, $hash) {
+            $query = "SELECT passwd, confirm FROM users WHERE login = '$login'";
+            $req = $this->getCo()->prepare($query);
+            $req->execute();
+            $data = $req->fetch(PDO::FETCH_ASSOC);
+            if ($data['confirm'] == 0) {
+                return (1);
+            } else if ($data['passwd'] === $hash) {
+                return (0);
+            } else {
+                return (2);
+            }
+            $req->closeCursor();
+        }
     }
 ?>
