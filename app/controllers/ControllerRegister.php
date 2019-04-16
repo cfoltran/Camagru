@@ -1,9 +1,4 @@
 <?php
-    use PHPMailer\PHPMailer\PHPMailer;
-    require_once('PHPMailer/SMTP.php');
-    require_once('PHPMailer/Exception.php');
-    require_once('PHPMailer/PHPMailer.php');
-
     class ControllerRegister {
         private $_userManager;
         private $_view;
@@ -55,28 +50,6 @@
                 $this->_view = new View('Login');
                 $this->_view->generate(array('info' => "Check your mailbox before signin"));
             }
-        }
-
-        public function _sendConfirmationMail($login, $target, $key) {
-            $m = new PHPMailer();
-            $m->isSMTP();
-            $m->Host       = 'smtp.gmail.com';
-            $m->SMTPAuth   = true;
-            $m->Username   = 'camagru42.test@gmail.com';
-            $m->Password   = 'clemlerider';
-            $m->Port       = 465;
-            $m->SMTPSecure = 'ssl';
-
-            // Recipients
-            $m->isHTML(true);
-            $m->setFrom('camagru42.test@gmail.com', 'bill');
-            $m->addAddress($target);
-
-            // Content
-            $m->Subject = 'Here is the subject';
-            $m->Body    = 'This is the HTML message body <b>in bold!</b>';
-            $m->send();
-            var_dump($m->send());die();
         }
     }
 ?>

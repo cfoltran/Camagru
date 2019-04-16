@@ -12,6 +12,8 @@
                 $this->_login();
             } else if ($_GET['submit'] === 'logout') {
                 $this->_logout();
+            } else if ($_GET['submit'] === 'update') {
+                $this->_updatePassword();
             } else {
                 $this->loginView();
             }
@@ -46,6 +48,19 @@
                     $this->_view = new View('Camagru');
                     $this->_view->generate(array());
                 }
+            }
+        }
+
+        private function _updatePassword() {
+            session_start();
+            $new = $_POST['newPasswd'];
+            $old = $_POST['oldPasswd'];
+
+            $hash = hash('whirlpool', $old);
+            $this->_userManager = new UserManager;
+            if ($this->_userManager->checkPassword($hash, $_SESSION['login']) === true) {
+                $hash = hash('whirlpool', $new);
+                $this->_userManager->updatePassword($hash, $_SESSION['login']);
             }
         }
 

@@ -38,5 +38,24 @@
             }
             $req->closeCursor();
         }
+
+        public function checkPassword($hash, $login) {
+            $query = "SELECT * FROM users WHERE login LIKE '$login' AND passwd LIKE '$hash'";
+            $req = $this->getCo()->prepare($query);
+            $req->execute();
+            while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
+                if (isset($data))
+                    return (true);
+            }
+            return (false);
+            $req->closeCursor();
+        }
+
+        public function updatePassword($hash, $login) {
+            $query = "UPDATE users SET passwd='$hash' WHERE login LIKE '$login'";
+            $req = $this->getCo()->prepare($query);
+            $req->execute();
+            $req->closeCursor();
+        }
     }
 ?>

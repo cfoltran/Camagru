@@ -12,5 +12,5 @@
             </div>
             <button type="submit" class="btn btn-primary">Log in</button>
         </form>
-        </div>
+    </div>
 </div>
