@@ -8,7 +8,7 @@
                 <img class="article-img"  onclick="displayModalPic(<?= $index ?>)" src="data:image/jpeg;base64,<?= $photo->getPhoto()?>">
                 <div class="article-title">
                     <i onclick="like(<?= $photo->getId() ?>)"class="fas fa-thumbs-up"></i> <?= $photo->getLikeNumber($photo->getId()) ?>
-                    <i class="fas fa-comments"></i>
+                    <i class="fas fa-comments"></i> <?= $photo->getCommentNumber() ?>
                 </div>
             </article>
         </section>    
@@ -20,9 +20,11 @@
     <h2>Commentaires</h2>
     <input class="input-com comment" type="text" placeholder="Leave a comment">
     <button class="btn-blue" style="float: right">Comment</button>
-    <div class="comment">
-        <p><b class="btn-blue">Clément Foltran</b> Anim anim incididunt eiusmod consequat amet.</p>
-    </div>
+    
+        <div class="comment">
+            <p><b class="btn-blue">Clément Foltran</b> Anim anim incididunt eiusmod consequat amet.</p>
+        </div>
+    
   </div>
 </div>
 <script src="<?= URL ?>scripts/home.js"></script>

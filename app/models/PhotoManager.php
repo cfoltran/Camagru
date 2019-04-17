@@ -30,14 +30,31 @@ class PhotoManager extends Model {
         $req->closeCursor();
     }
 
-    function getLikeNumber($id_photo) {
+    public function getLikeNumber($id_photo) {
         $query = "SELECT COUNT(id_photo) AS 'like_number' FROM likes WHERE id_photo LIKE $id_photo";
         $req = $this->getCo()->prepare($query);
         $req->execute();
         $data = $req->fetch(PDO::FETCH_ASSOC);
         return ($data['like_number']);
         $req->closeCursor();
-        
+    }
+
+    public function getCommentNumber($id_photo) {
+        $query = "SELECT COUNT(id_photo) AS 'comment_number' FROM comments WHERE id_photo LIKE $id_photo";
+        $req = $this->getCo()->prepare($query);
+        $req->execute();
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        return ($data['comment_number']);
+        $req->closeCursor();
+    }
+
+    public function getComments($id_photo) {
+        $query = "SELECT comment FROM comments WHERE id_photo LIKE $id_photo";
+        $req = $this->getCo()->prepare($query);
+        $req->execute();
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        print_r($data);die();
+        $req->closeCursor();
     }
 
     public function addImage($data, $id_user) {
