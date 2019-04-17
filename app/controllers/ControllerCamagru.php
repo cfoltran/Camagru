@@ -14,8 +14,14 @@
         }
 
         public function camagruView() {
-            $this->_view = new View('Camagru');
-            $this->_view->generate(array());
+            session_start();
+            if (isset($_SESSION['login'])) {
+                $this->_view = new View('Camagru');
+                $this->_view->generate(array());
+            } else {
+                $this->_view = new View('Login');
+                $this->_view->generate(array('err' => "You must be connect to access to this page"));
+            }
         }
 
         private function _catchPic() {

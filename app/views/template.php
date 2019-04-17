@@ -15,7 +15,7 @@
         <?php 
         session_start();
         if (!isset($_SESSION['login'])): ?>
-            <a href="<?= URL ?>?url=login"><i class="fas fa-camera"></i> Take a pic</a>
+            <a href="<?= URL ?>?url=camagru"><i class="fas fa-camera"></i> Take a pic</a>
             <a class="user" href="<?= URL ?>?url=login">Sign in</a>
             <a class="user" href="<?= URL ?>?url=register">Register</a>
         <?php else: ?>
