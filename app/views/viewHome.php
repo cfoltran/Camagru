@@ -7,8 +7,8 @@
             <article>
                 <img class="article-img"  onclick="displayModalPic(<?= $index ?>)" src="data:image/jpeg;base64,<?= $photo->getPhoto()?>">
                 <div class="article-title">
-                    <i class="fas fa-thumbs-up"></i> 100
-                    <i class="fas fa-comments"></i> 100
+                    <i onclick="like(<?= $photo->getId() ?>)"class="fas fa-thumbs-up"></i> <?= $photo->getLikeNumber($photo->getId()) ?>
+                    <i class="fas fa-comments"></i>
                 </div>
             </article>
         </section>    

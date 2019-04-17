@@ -1,6 +1,6 @@
 <?php
     class ControllerCamagru {
-        private $_camagruManager;
+        private $_photoManager;
         private $_view;
 
         public function __construct($url) {
@@ -23,8 +23,10 @@
             if (strpos($img, 'data:image/png;base64') === 0) {
                 $img = str_replace('data:image/png;base64,', '', $img);
                 $img = str_replace(' ', '+', $img);
-                $this->_camagruManager = new CamagruManager;
-                $this->_camagruManager->addImage($img);
+                $this->_photoManager = new PhotoManager;
+                $userManager = new UserManager;
+                session_start();
+                $this->_photoManager->addImage($img, $_SESSION['id']);
             }
         }
     }

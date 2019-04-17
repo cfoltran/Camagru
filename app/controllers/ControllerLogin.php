@@ -45,6 +45,7 @@
                 } else {
                     session_start();
                     $_SESSION['login'] = $login;
+                    $_SESSION['id'] = $this->_userManager->getUserId($login);
                     $this->_view = new View('Camagru');
                     $this->_view->generate(array());
                 }
@@ -68,6 +69,7 @@
             session_start();
             $login = $_SESSION['login'];
             $_SESSION['login'] = null;
+            $_SESSION['id'] = null;
             $this->_view = new View('Login');
             $this->_view->generate(array('info' => "See you <b>$login</b>"));
         }

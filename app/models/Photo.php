@@ -3,6 +3,7 @@ class Photo {
     private $_id;
     private $_photo;
     private $_date;
+    private $_photoManager;
 
     public function __construct(array $data) {
         $this->hydrate($data);
@@ -10,7 +11,7 @@ class Photo {
 
     public function hydrate(array $data) {
         foreach ($data as $key => $value) {
-            if (substr($key, 0, 2) == "id")
+            if ($key === "id_photo")
                 $key = substr($key, 0, 2);
             $method = 'set'.ucfirst($key);
             if (method_exists($this, $method))
@@ -34,10 +35,17 @@ class Photo {
         $this->_date = $date;
     }
 
-    // Todo getters
-
     public function getPhoto() {
         return ($this->_photo);
+    }
+
+    public function getId() {
+        return ($this->_id);
+    }
+
+    public function getLikeNumber($id) {
+        $this->_photoManager = new PhotoManager;
+        return ($this->_photoManager->getLikeNumber($id));
     }
 }
 ?>

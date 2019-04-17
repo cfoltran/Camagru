@@ -15,3 +15,16 @@ window.onclick = (event) => {
         modalUser.style.display = "none";
     }
 }
+
+const like = (idPhoto) => {
+    alert(idPhoto);
+    var xhr = new XMLHttpRequest();
+        xhr.open('POST', '?url=home&submit=like');
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.addEventListener('readystatechange', () => {
+            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+                console.log('like');
+            }
+        });
+    xhr.send("idPhoto=" + idPhoto);
+}

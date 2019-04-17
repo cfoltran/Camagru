@@ -5,6 +5,16 @@
             return ($this->getAll('users', 'login'));
         }
 
+        public function getUserId($login) {
+            $query = "SELECT id_user FROM users WHERE login LIKE '$login'";
+            $req = $this->getCo()->prepare($query);
+            $req->execute();
+            while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
+                return ($data['id_user']);
+            }
+            $req->closeCursor();
+        }
+
         public function userExist($login) {
             $req = $this->getCo()->prepare("SELECT login FROM users WHERE LOGIN LIKE '$login'");
             $req->execute();
