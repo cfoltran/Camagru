@@ -63,7 +63,7 @@ class Photo {
 
     public function getComments() {
         $this->_photoManager = new PhotoManager;
-        return ($this->$_photoManager->getComments($this->getId()));
+        return ($this->_photoManager->getComments($this->getId()));
     }
 
     public function getCommentNumber() {

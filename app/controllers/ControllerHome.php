@@ -10,6 +10,8 @@
                 throw new Exception('Page not found');
             } else if ($_GET['submit'] === 'like') {
                 $this->_like();
+            } else if ($_GET['submit'] === 'comment') {
+                $this->_comment();
             } else
                 $this->photos();
         }
@@ -32,10 +34,22 @@
                 $this->_photosManager = new PhotoManager;
                 if ($this->_photosManager->alreadyLike($id_photo, $id_user) === false) {
                     $this->_photosManager->like($id_photo, $id_user);
-                    var_dump("MERDE");die();
                 } else {
                     $this->_photosManager->unlike($id_photo, $id_user);
                 }
+            }
+        }
+
+        private function _comment() {
+            session_start();
+            $id_photo = $_POST['idPhoto'];
+            $comment = $_POST['comment'];
+            $id_user = $_SESSION['id'];
+            if ($_SESSION['login'] === null) {
+                var_dump('error');
+            } else {
+                $this->_photosManager = new PhotoManager;
+                $this->_photosManager->comment($id_photo, $id_user, $comment);
             }
         }
     }

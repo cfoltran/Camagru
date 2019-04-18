@@ -12,6 +12,13 @@ class PhotoManager extends Model {
         $req->closeCursor();
     }
 
+    public function comment($id_photo, $id_user, $comment) {
+        $query = "INSERT INTO comments VALUE($id_photo, $id_user, '$comment')";
+        $req = $this->getCo()->prepare($query);
+        $req->execute();
+        $req->closeCursor();
+    }
+
     public function unlike($id_photo, $id_user) {
         $query = "DELETE FROM likes WHERE id_user LIKE $id_user AND id_photo LIKE $id_photo";
         $req = $this->getCo()->prepare($query);
@@ -53,7 +60,7 @@ class PhotoManager extends Model {
         $req = $this->getCo()->prepare($query);
         $req->execute();
         $data = $req->fetch(PDO::FETCH_ASSOC);
-        print_r($data);die();
+        return ($data);
         $req->closeCursor();
     }
 

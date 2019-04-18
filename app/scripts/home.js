@@ -17,14 +17,26 @@ window.onclick = (event) => {
 }
 
 const like = (idPhoto) => {
-    alert(idPhoto);
     var xhr = new XMLHttpRequest();
-        xhr.open('POST', '?url=home&submit=like');
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.addEventListener('readystatechange', () => {
-            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-                console.log('like');
-            }
-        });
+    xhr.open('POST', '?url=home&submit=like');
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.addEventListener('readystatechange', () => {
+        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+            console.log('like');
+        }
+    });
     xhr.send("idPhoto=" + idPhoto);
+}
+
+const comment = (idPhoto) => {
+    var comment = document.getElementById('comment').value;
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '?url=home&submit=comment');
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.addEventListener('readystatechange', () => {
+        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+            console.log('comment');
+        }
+    });
+    xhr.send("idPhoto=" + idPhoto + "&comment=" + comment);
 }
