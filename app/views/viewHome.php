@@ -20,11 +20,11 @@
     <h2>Commentaires</h2>
     <input class="input-com comment" type="text" placeholder="Leave a comment">
     <button class="btn-blue" style="float: right">Comment</button>
-    
+    <?php foreach ($photos[$selected]->getComments() as $comment): ?>
         <div class="comment">
             <p><b class="btn-blue">Clément Foltran</b> Anim anim incididunt eiusmod consequat amet.</p>
         </div>
-    
+    <?php endforeach; ?>
   </div>
 </div>
 <script src="<?= URL ?>scripts/home.js"></script>
