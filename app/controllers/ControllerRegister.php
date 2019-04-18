@@ -41,32 +41,25 @@
             } else {
                 // Hash the user password
                 $hash = hash('whirlpool', $passwd1);
-                // Let's add the little new
-                $key = '';
-                // Create the confirmation key for the mail
-                for ($i = 0; $i < 14; $i++) {
-                    $key .= mt_rand(0, 9);
-                }
                 $this->_userManager->addUser($firstname, $lastname, $login, $mail, $hash, $key);
-                $this->_sendConfirmationMail($login, $mail, $key);
+                $this->_sendConfirmationMail($login, $mail);
                 $this->_view = new View('Login');
                 $this->_view->generate(array('info' => "Check your mailbox before signin"));
             }
         }
 
-        private function _sendConfirmationMail($login, $mail, $key) {
+        private function _sendConfirmationMail($login, $mail) {
+            // Let's add the little new
+            $key = '';
+            // Create the confirmation key for the mail
+            for ($i = 0; $i < 14; $i++) {
+                $key .= mt_rand(0, 9);
+            }
             $header = "MIME-Version: 1.0\r\n";
             $header .= 'From:"camagru.fr"<no-reply@camagru.fr>'."\n";
             $header .= 'Content-Type:text/html; charset="utf-8"'."\n";
             $header .= 'Content-Transfer-Encoding: 8bit';
-
-            $message = '
-                <html>
-                    <body>
-                        <a href="'. URL .'?url=register&submit=confirm&login='. $login .'&key='. $key .'">Confirm your account</a>
-                    </body>
-                </html>
-            ';
+            $message = '<a href="'. URL .'?url=register&submit=confirm&login='. $login .'&key='. $key .'">Confirm your account</a>';
             mail($mail, "Camagru account confirmation", $message, $header);
         }
 

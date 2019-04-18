@@ -4,14 +4,18 @@ const toggleForm = () => {
 }
 
 // Let's save our user
-// const resetPasswd = () => {
-//     var xhr = new XMLHttpRequest();
-//     xhr.open('GET', '?url=login&submit=resetPasswd');
-//     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-//     xhr.addEventListener('readystatechange', () => {
-//         if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-//             document.getElementsByClassName('info').textContent = "Check your mailbox";
-//         }
-//     });
-//     xhr.send(null);
-// }
+const resetPasswd = () => {
+    var email = document.getElementById('email').value;
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '?url=login&submit=resetPasswd');
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.addEventListener('readystatechange', () => {
+        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+            if (xhr.response == 0)
+                alert("Please check your mail box 💌");
+            else
+                alert("This email doesn't exists 😭");
+        }
+    });
+    xhr.send("email=" + email);
+}

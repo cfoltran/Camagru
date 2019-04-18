@@ -16,6 +16,8 @@
                 $this->_updatePassword();
             } else if ($_GET['submit'] === 'updateLogin') {
                 $this->_updateLogin();
+            } else if ($_GET['submit'] === 'resetPasswd') {
+                $this->_resetPasswd();
             } else {
                 $this->loginView();
             }
@@ -81,6 +83,24 @@
             $this->_userManager = new UserManager;
             if ($this->_userManager->userExist($login) === false) {
                 $this->_userManager->updateLogin($login);
+                echo 0;
+            } else {
+                echo 1;
+            }
+        }
+
+        private function _resetPasswd() {
+            $email = $_POST['email'];
+            $this->_userManager = new UserManager;
+            if ($this->_userManager->getConfirmKey($email) != null)
+            {
+                var_dump('ok');
+                $header = "MIME-Version: 1.0\r\n";
+                $header .= 'From:"camagru.fr"<no-reply@camagru.fr>'."\n";
+                $header .= 'Content-Type:text/html; charset="utf-8"'."\n";
+                $header .= 'Content-Transfer-Encoding: 8bit';
+                $message = '<a href="'. URL .'?url=register&submit=confirm&login='. $login .'&key='. $key .'">Confirm your account</a>';
+                mail($email, "Camagru reset password", $message, $header);
                 echo 0;
             } else {
                 echo 1;

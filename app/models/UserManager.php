@@ -95,5 +95,14 @@
             $req->execute();
             $req->closeCursor();
         }
+
+        public function getConfirmKey($email) {
+            $query = "SELECT confirmKey FROM users WHERE email = '$email'";
+            $req = $this->getCo()->prepare($query);
+            $req->execute();
+            $data = $req->fetch(PDO::FETCH_ASSOC);
+            return ($data);
+            $req->closeCursor();
+        }
     }
 ?>
