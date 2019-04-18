@@ -40,47 +40,29 @@
                     <input type="password" class="input-box" id="oldPasswd" placeholder="Old password" required>
                     <input type="password" class="input-box" id="newPasswd1" placeholder="New password" required>
                     <input type="password" class="input-box" id="newPasswd2" placeholder="Confirm password" required>
-                    <div class="info">
-                        <?= $info ?>
-                    </div>
-                    <div class="error">
-                        <?= $err ?>
-                    </div>
                     <button onclick="updatePasswd()" class="btn btn-primary">Update</button>
                 </div>
                 <div class="form-body" id="del-account">
                     <h2 style="text-align: center">Delete your account 😭</h2>
                     <input type="password" class="input-box" name="oldPasswd" placeholder="Enter your password" required>
-                    <div class="info">
-                        <?= $info ?>
-                    </div>
-                    <div class="error">
-                        <?= $err ?>
-                    </div>
                     <button type="submit" class="btn btn-primary">Delete</button>
                 </div>
                 <div class="form-body" id="update-login">
                     <h2 style="text-align: center">Update your login 🆕</h2>
                     <input type="text" class="input-box" id="login" placeholder="Enter your new login" required>
-                    <div class="info">
-                        <?= $info ?>
-                    </div>
-                    <div class="error">
-                        <?= $err ?>
-                    </div>
                     <button type="submit" onclick="updateLogin()" class="btn btn-primary">Update</button>
                 </div>
                 <div class="form-body" id="update-email">
                     <h2 style="text-align: center">Update your email 🆕</h2>
                     <input type="email" class="input-box" name="email" placeholder="Enter your new email" required>
-                    <div class="info">
-                        <?= $info ?>
-                    </div>
-                    <div class="error">
-                        <?= $err ?>
-                    </div>
                     <button type="submit" class="btn btn-primary">Supprimer</button>
                 </div>
+            </div>
+            <div class="info" id="setting-info">
+                <?= $info ?>
+            </div>
+            <div class="error" id="setting-error">
+                <?= $err ?>
             </div>
         </div>
     </div>

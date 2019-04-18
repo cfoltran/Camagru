@@ -18,18 +18,22 @@ window.onclick = (event) => {
     }
 }
 
-const like = (idPhoto, index) => {
-    nlike = document.getElementsByClassName("fa-thumbs-up")[index];
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '?url=home&submit=like');
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhr.send("idPhoto=" + idPhoto);
-    xhr.addEventListener('readystatechange', () => {
-        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-            var n = parseInt(nlike.textContent) + parseInt(xhr.responseText);
-            nlike.textContent = " " + n;
-        }
-    });
+const like = (idPhoto, index, loggued) => {
+    if (loggued) {
+        nlike = document.getElementsByClassName("fa-thumbs-up")[index];
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '?url=home&submit=like');
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.send("idPhoto=" + idPhoto);
+        xhr.addEventListener('readystatechange', () => {
+            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+                var n = parseInt(nlike.textContent) + parseInt(xhr.responseText);
+                nlike.textContent = " " + n;
+            }
+        });
+    } else {
+        alert("You must be connected to like publication 😭");
+    }
 }
 
 const comment = (idPhoto) => {

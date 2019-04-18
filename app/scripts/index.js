@@ -41,12 +41,12 @@ const updatePasswd = () => {
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.addEventListener('readystatechange', () => {
             if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-                document.getElementsByClassName('info')[0].textContent = "Your password has been updated";
+                document.getElementById('setting-info').textContent = "Your password has been updated";
             }
         });
         xhr.send("newPasswd=" + passwd + "&oldPasswd=" + document.getElementById('oldPasswd').value);
     } else {
-        document.getElementsByClassName('error')[0].textContent = "Passwords doesn't match";
+        document.getElementById('setting-error').textContent = "Passwords doesn't match";
     }
 }
 
@@ -59,9 +59,9 @@ const updateLogin = () => {
     xhr.addEventListener('readystatechange', () => {
         if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
             if (xhr.response == 1) {
-                document.getElementsByClassName('error')[2].textContent = "This login already taken";
+                document.getElementById('setting-error').textContent = "This login already taken";
             } else {
-                document.getElementsByClassName('info')[2].textContent = "Your login has been updated";
+                document.getElementById('setting-info').textContent = "Your login has been updated";
             }
         }
     });

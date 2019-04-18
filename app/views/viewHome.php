@@ -1,14 +1,18 @@
 <section class="cards">
     <?php
-    $index = -1;
     session_start();
+    $index = -1;
+    $loggued = false;
+    if (isset($_SESSION['login'])) {
+        $loggued = true;
+    }
     if ($photos != null): 
         foreach ($photos as $photo): $index++?>
             <section class="cards">
                 <article>
                     <img class="article-img"  onclick="displayModalPic(<?= $index ?>)" src="data:image/jpeg;base64,<?= $photo->getPhoto()?>">
                     <div class="article-title">
-                        <i onclick="like(<?= $photo->getId() ?>, <?=$index?>)"class="fas fa-thumbs-up"> <?= $photo->getLikeNumber($photo->getId()) ?></i>
+                        <i onclick="like(<?= $photo->getId() ?>, <?=$index?>, <?= $loggued ?>)"class="fas fa-thumbs-up"> <?= $photo->getLikeNumber($photo->getId()) ?></i>
                         <i class="fas fa-comments"> <?= $photo->getCommentNumber()?></i>
                     </div>
                 </article>
