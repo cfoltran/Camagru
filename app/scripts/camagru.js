@@ -56,29 +56,30 @@ document.getElementById('snap-push').addEventListener("click", () => {
     var canvas = document.getElementById('canvas');
     var dataURL = canvas.toDataURL();
     var xhr = new XMLHttpRequest();
-        xhr.open('POST', '?url=camagru&submit=pic');
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.addEventListener('readystatechange', () => {
-            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-                video.style.display = 'block';
-                preview.style.display = 'none';
-                save.style.display = 'none';
-                document.getElementById('photoInfo').textContent = "Photo correctly added to your library";
-            } else {
-                document.getElementById('photoError').textContent = "An error occured";
-            }
-        });
-        xhr.send("img=" + dataURL);
+    xhr.open('POST', '?url=camagru&submit=pic');
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.addEventListener('readystatechange', () => {
+        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+            video.style.display = 'block';
+            preview.style.display = 'none';
+            save.style.display = 'none';
+            document.getElementById('photoInfo').textContent = "Photo correctly added to your library";
+            
+        }
+    });
+    xhr.send("img=" + dataURL);
 });
 
-
-// Get the user photo library
-var xhr = new XMLHttpRequest();
-xhr.open('GET', '?url=camagru&submit=getPhotos');
-xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-xhr.addEventListener('readystatechange', () => {
-    if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-        xhr.response;
-    }
-});
-xhr.send(null);
+// Drop the image on click
+const dropPhoto = (id_photo, index) => {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '?url=camagru&submit=del');
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.addEventListener('readystatechange', () => {
+        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+            document.getElementsByClassName('article-img')[index].remove();
+            document.getElementsByClassName('fa-trash-alt')[index].remove();
+        }
+    });
+    xhr.send("idPhoto=" + id_photo);
+}

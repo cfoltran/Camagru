@@ -12,8 +12,9 @@
                 $this->_like();
             } else if ($_GET['submit'] === 'comment') {
                 $this->_comment();
-            } else
+            } else {
                 $this->photos();
+            }
         }
 
         private function photos() {
@@ -34,8 +35,10 @@
                 $this->_photosManager = new PhotoManager;
                 if ($this->_photosManager->alreadyLike($id_photo, $id_user) === false) {
                     $this->_photosManager->like($id_photo, $id_user);
+                    echo 1;
                 } else {
                     $this->_photosManager->unlike($id_photo, $id_user);
+                    echo -1;
                 }
             }
         }

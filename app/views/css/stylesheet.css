@@ -150,8 +150,7 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 70px;
-  padding: 10px;
+  height: 60px;
   border-top: solid black 1px;
   background-color: rgba(94, 94, 94, 0.9);
   text-align: center;
@@ -278,10 +277,6 @@ article {
   border: 0;
 }
 
-#update-passwd {
-  display: none;
-}
-
-#del-account {
+#del-account, #update-passwd, #update-email, #update-login {
   display: none;
 }

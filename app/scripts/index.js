@@ -13,14 +13,16 @@ const displayModalUser = () => {
     modalUser.style.display = "block";
 }
 
-const displayUpdatePasswd = () => {
+const hide = () => {
+    document.getElementById('update-passwd').style.display = 'none';
     document.getElementById('del-account').style.display = 'none';
-    document.getElementById('update-passwd').style.display = 'block';
+    document.getElementById('update-login').style.display = 'none';
+    document.getElementById('update-email').style.display = 'none';
 }
 
-const displayDelAccount = () => {
-    document.getElementById('update-passwd').style.display = 'none';
-    document.getElementById('del-account').style.display = 'block';
+const displayForm = (name) => {
+    hide();
+    document.getElementById(name).style.display = 'block';
 }
 
 const checks = () => {
@@ -35,7 +37,7 @@ const updatePasswd = () => {
     const passwd = document.getElementById('newPasswd1').value;
     if (checks() === true) {
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '?url=login&submit=update');
+        xhr.open('POST', '?url=login&submit=updatePasswd');
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.addEventListener('readystatechange', () => {
             if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
@@ -46,4 +48,22 @@ const updatePasswd = () => {
     } else {
         document.getElementsByClassName('error')[0].textContent = "Passwords doesn't match";
     }
+}
+
+// Let's update the login
+const updateLogin = () => {
+    const login = document.getElementById('login').value;
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '?url=login&submit=updateLogin');
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.addEventListener('readystatechange', () => {
+        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+            if (xhr.response == 1) {
+                document.getElementsByClassName('error')[2].textContent = "This login already taken";
+            } else {
+                document.getElementsByClassName('info')[2].textContent = "Your login has been updated";
+            }
+        }
+    });
+    xhr.send("login=" + login);
 }

@@ -8,6 +8,8 @@
                 throw new Exception('Page not found');
             } else if ($_GET['submit'] === 'ok') {
                 $this->_checks();
+            } else if ($_GET['submit'] === 'confirm') {
+                $this->_confirmAccount();
             } else {
                 $this->registerView();
             }
@@ -46,9 +48,37 @@
                     $key .= mt_rand(0, 9);
                 }
                 $this->_userManager->addUser($firstname, $lastname, $login, $mail, $hash, $key);
-                // $this->_sendConfirmationMail($login, $mail, $key);
+                $this->_sendConfirmationMail($login, $mail, $key);
                 $this->_view = new View('Login');
                 $this->_view->generate(array('info' => "Check your mailbox before signin"));
+            }
+        }
+
+        private function _sendConfirmationMail($login, $mail, $key) {
+            $header = "MIME-Version: 1.0\r\n";
+            $header .= 'From:"camagru.fr"<no-reply@camagru.fr>'."\n";
+            $header .= 'Content-Type:text/html; charset="utf-8"'."\n";
+            $header .= 'Content-Transfer-Encoding: 8bit';
+
+            $message = '
+                <html>
+                    <body>
+                        <a href="'. URL .'?url=register&submit=confirm&login='. $login .'&key='. $key .'">Confirm your account</a>
+                    </body>
+                </html>
+            ';
+            mail($mail, "Camagru account confirmation", $message, $header);
+        }
+
+        private function _confirmAccount() {
+            $key = $_GET['key'];
+            $login = $_GET['login'];
+
+            $this->_userManager = new UserManager;
+            if ($this->_userManager->checkConfKey($key, $login) === true) {
+                $this->_userManager->confirmAccount($login);
+                $this->_view = new View('Login');
+                $this->_view->generate(array('info' => "Confirmation success"));
             }
         }
     }

@@ -12,8 +12,10 @@
                 $this->_login();
             } else if ($_GET['submit'] === 'logout') {
                 $this->_logout();
-            } else if ($_GET['submit'] === 'update') {
+            } else if ($_GET['submit'] === 'updatePasswd') {
                 $this->_updatePassword();
+            } else if ($_GET['submit'] === 'updateLogin') {
+                $this->_updateLogin();
             } else {
                 $this->loginView();
             }
@@ -72,6 +74,17 @@
             $_SESSION['id'] = null;
             $this->_view = new View('Login');
             $this->_view->generate(array('info' => "See you <b>$login</b>"));
+        }
+
+        private function _updateLogin() {
+            $login = $_POST['login'];
+            $this->_userManager = new UserManager;
+            if ($this->_userManager->userExist($login) === false) {
+                $this->_userManager->updateLogin($login);
+                echo 0;
+            } else {
+                echo 1;
+            }
         }
     }  
 ?>

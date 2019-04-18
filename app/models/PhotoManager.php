@@ -70,5 +70,24 @@ class PhotoManager extends Model {
         $req->execute();
         $req->closeCursor();
     }
+
+    public function getPhotosUser($id_user) {
+        $query = "SELECT * FROM photos WHERE id_user = $id_user";
+        $tab = [];
+        $req = $this->getCo()->prepare($query);
+        $req->execute();
+        while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
+            $tab[] = new Photo($data);
+        }
+        return $tab;
+        $req->closeCursor();
+    }
+
+    public function dropPhoto($id_photo) {
+        $query = "DELETE FROM photos WHERE id_photo = $id_photo";
+        $req = $this->getCo()->prepare($query);
+        $req->execute();
+        $req->closeCursor();
+    }
 }
 ?>

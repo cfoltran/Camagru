@@ -29,11 +29,14 @@
     </div>
     <div id="modalUser" class="modal">
         <div class="modal-content">
-            <button onclick="displayUpdatePasswd()">Changer de mot de passe</button>
-            <button onclick="displayDelAccount()">Supprimer le compte</button>
+            <button onclick="displayForm('update-passwd')">Update password</button>
+            <button onclick="displayForm('del-account')">Delete account</button>
+            <button onclick="displayForm('update-login')">Change your login</button>
+            <button onclick="displayForm('update-email')">Change your email</button>
+
             <div class="form-zone">
                 <div class="form-body" id="update-passwd">
-                    <h2 style="text-align: center">Update your password</h2>
+                    <h2 style="text-align: center">Update your password 🆕</h2>
                     <input type="password" class="input-box" id="oldPasswd" placeholder="Old password" required>
                     <input type="password" class="input-box" id="newPasswd1" placeholder="New password" required>
                     <input type="password" class="input-box" id="newPasswd2" placeholder="Confirm password" required>
@@ -48,6 +51,28 @@
                 <div class="form-body" id="del-account">
                     <h2 style="text-align: center">Delete your account 😭</h2>
                     <input type="password" class="input-box" name="oldPasswd" placeholder="Enter your password" required>
+                    <div class="info">
+                        <?= $info ?>
+                    </div>
+                    <div class="error">
+                        <?= $err ?>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                </div>
+                <div class="form-body" id="update-login">
+                    <h2 style="text-align: center">Update your login 🆕</h2>
+                    <input type="text" class="input-box" id="login" placeholder="Enter your new login" required>
+                    <div class="info">
+                        <?= $info ?>
+                    </div>
+                    <div class="error">
+                        <?= $err ?>
+                    </div>
+                    <button type="submit" onclick="updateLogin()" class="btn btn-primary">Update</button>
+                </div>
+                <div class="form-body" id="update-email">
+                    <h2 style="text-align: center">Update your email 🆕</h2>
+                    <input type="email" class="input-box" name="email" placeholder="Enter your new email" required>
                     <div class="info">
                         <?= $info ?>
                     </div>

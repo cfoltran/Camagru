@@ -1,7 +1,9 @@
 var modalPic = document.getElementById('modalPic');
 var modalUser = document.getElementById('modalUser');
+var selected = null;
 
 const displayModalPic = (index) => {
+    selected = index;
     modalPic.style.display = "block";
     var modalImg = document.querySelectorAll('img')[index].src;
     document.getElementById('modal-img').src = modalImg;
@@ -16,16 +18,18 @@ window.onclick = (event) => {
     }
 }
 
-const like = (idPhoto) => {
+const like = (idPhoto, index) => {
+    nlike = document.getElementsByClassName("fa-thumbs-up")[index];
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '?url=home&submit=like');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.send("idPhoto=" + idPhoto);
     xhr.addEventListener('readystatechange', () => {
         if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-            console.log('like');
+            var n = parseInt(nlike.textContent) + parseInt(xhr.responseText);
+            nlike.textContent = " " + n;
         }
     });
-    xhr.send("idPhoto=" + idPhoto);
 }
 
 const comment = (idPhoto) => {
