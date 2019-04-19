@@ -13,6 +13,16 @@ const displayModalUser = () => {
     modalUser.style.display = "block";
 }
 
+window.onclick = (event) => {
+    if (event.target == modalUser) {
+        modalUser.style.display = "none";
+        hide();
+    }
+    if (event.target == modalPic) {
+        modalPic.style.display = "none";
+    }
+}
+
 const hide = () => {
     document.getElementById('update-passwd').style.display = 'none';
     document.getElementById('del-account').style.display = 'none';

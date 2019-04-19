@@ -83,7 +83,25 @@ class PhotoManager extends Model {
         $req->closeCursor();
     }
 
+    public function dropComments($id_photo) {
+        $query = "DELETE FROM comments WHERE id_photo = $id_photo";
+        $req = $this->getCo()->prepare($query);
+        $req->execute();
+        $req->closeCursor();
+    }
+
+    public function dropLikes($id_photo) {
+        $query = "DELETE FROM likes WHERE id_photo = $id_photo";
+        $req = $this->getCo()->prepare($query);
+        $req->execute();
+        $req->closeCursor();
+    }
+
     public function dropPhoto($id_photo) {
+        // Drop comment and likes before
+        $this->dropLikes($id_photo);
+        $this->dropComments($id_photo);
+        // Delete the photo
         $query = "DELETE FROM photos WHERE id_photo = $id_photo";
         $req = $this->getCo()->prepare($query);
         $req->execute();

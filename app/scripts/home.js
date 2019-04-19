@@ -15,6 +15,7 @@ window.onclick = (event) => {
     }
     if (event.target == modalUser) {
         modalUser.style.display = "none";
+        hide();
     }
 }
 

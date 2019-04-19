@@ -3,6 +3,7 @@
 
     class ControllerLogin {
         private $_userManager;
+        private $_photosManager;
         private $_view;
 
         public function __construct($url) {
@@ -56,8 +57,10 @@
                     session_start();
                     $_SESSION['login'] = $login;
                     $_SESSION['id'] = $this->_userManager->getUserId($login);
+                    $this->_photosManager = new PhotoManager;
+                    $photos = $this->_photosManager->getPhotosUser($_SESSION['id']);
                     $this->_view = new View('Camagru');
-                    $this->_view->generate(array());
+                    $this->_view->generate(array('photos' => $photos));
                 }
             }
         }

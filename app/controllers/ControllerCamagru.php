@@ -20,7 +20,6 @@
             if (isset($_SESSION['login'])) {
                 $this->_photosManager = new PhotoManager;
                 $photos = $this->_photosManager->getPhotosUser($_SESSION['id']);
-                $_library = $photos;
                 $this->_view = new View('Camagru');
                 $this->_view->generate(array('photos' => $photos));
             } else {
