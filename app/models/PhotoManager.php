@@ -5,6 +5,14 @@ class PhotoManager extends Model {
         return ($this->getAll('photos', 'photo'));
     }
 
+    public function getPhoto($id) {
+        $req = $this->getCo()->prepare("SELECT * FROM photos WHERE id_photo = $id");
+        $req->execute();
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        return (new Photo($data));
+        $req->closeCursor();
+    }
+
     public function like($id_photo, $id_user) {
         $query = "INSERT INTO likes VALUES($id_photo, $id_user)";
         $req = $this->getCo()->prepare($query);

@@ -283,8 +283,30 @@ article {
   overflow: scroll;
 }
 
+#del-account, #update-passwd, #update-email, #update-login {
+  display: none;
+}
+
+#camagru {
+  width: 70%;
+}
+
+/* ================================================= */
+/*                      PUBLICATION                  */
+/* ================================================= */
+
+#pub {
+  margin: auto;
+  width: 40%;
+}
+
+#pub img {
+  width: 680px;
+  height: 480px;
+}
+
 .comment {
-  margin-top: 5px;
+  margin-top: 10px;
   padding: 2px 15px 2px 15px;
   border-radius: 70px;
   background-color: rgba(94, 94, 94, 0.1);
@@ -294,13 +316,4 @@ article {
   width: 80%;
   height: 40px;
   border: 0;
-}
-
-#del-account, #update-passwd, #update-email, #update-login {
-  display: none;
-}
-
-
-#camagru {
-  width: 70%;
 }

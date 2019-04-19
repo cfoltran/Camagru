@@ -70,5 +70,10 @@ class Photo {
         $this->_photoManager = new PhotoManager;
         return ($this->_photoManager->getCommentNumber($this->getId()));
     }
+
+    // public function getCommentLogin() {
+    //     $this->_photoManager = new PhotoManager;
+    //     return ($this->_photoManager->getCommentNumber($this->getId()));
+    // }
 }
 ?>

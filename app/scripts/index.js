@@ -18,9 +18,6 @@ window.onclick = (event) => {
         modalUser.style.display = "none";
         hide();
     }
-    if (event.target == modalPic) {
-        modalPic.style.display = "none";
-    }
 }
 
 const hide = () => {
