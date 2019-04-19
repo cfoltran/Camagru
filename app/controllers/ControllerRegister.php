@@ -16,8 +16,14 @@
         }
 
         public function registerView() {
-            $this->_view = new View('Register');
-            $this->_view->generate(array());
+            session_start();
+            if ($_SESSION['login'] == null) {
+                $this->_view = new View('Register');
+                $this->_view->generate(array());
+            } else {
+                $this->_view = new View('Camagru');
+                $this->_view->generate(array());
+            }
         }
 
         private function _checks() {

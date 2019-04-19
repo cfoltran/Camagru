@@ -25,14 +25,7 @@
         <img id="modal-img">
         <h2>Commentaires</h2>
         <input class="input-com comment" id="comment" type="text" placeholder="Leave a comment">
-        <button class="btn-blue" style="float: right" onclick="comment(<?= $photos[0]->getId() ?>)">Comment</button>
-        
-            <?php foreach ($photos[0]->getComments() as $comment): ?>
-                <div class="comment">
-                    <p><b class="btn-blue"><?= $_SESSION['login']?></b> <?= $comment ?></p>
-                </div>
-            <?php endforeach; ?>
-        
+        <button class="btn-blue" style="float: right" onclick="comment(<?= $photos[0]->getId() ?>)">Comment</button>     
     </div>
 </div>
 <script src="<?= URL ?>scripts/home.js"></script>
