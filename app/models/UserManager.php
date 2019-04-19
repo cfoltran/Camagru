@@ -101,7 +101,17 @@
             $req = $this->getCo()->prepare($query);
             $req->execute();
             $data = $req->fetch(PDO::FETCH_ASSOC);
-            return ($data);
+            return ($data['confirmKey']);
+            $req->closeCursor();
+        }
+
+        public function resetPasswd($hash, $key, $newKey) {
+            $query = "UPDATE users SET passwd = '$hash' WHERE $key LIKE '$key'";
+            $req = $this->getCo()->prepare($query);
+            $req->execute();
+            $query = "UPDATE users SET confirmKey = '$newKey' WHERE $key LIKE '$key'";
+            $req = $this->getCo()->prepare($query);
+            $req->execute();
             $req->closeCursor();
         }
     }

@@ -100,15 +100,16 @@
 
         private function _resetPasswd() {
             $email = $_POST['email'];
+            $key = '';
             $this->_userManager = new UserManager;
-            if ($this->_userManager->getConfirmKey($email) != null)
+            $key = $this->_userManager->getConfirmKey($email);
+            if ($key != null)
             {
-                var_dump('ok');
                 $header = "MIME-Version: 1.0\r\n";
                 $header .= 'From:"camagru.fr"<no-reply@camagru.fr>'."\n";
                 $header .= 'Content-Type:text/html; charset="utf-8"'."\n";
                 $header .= 'Content-Transfer-Encoding: 8bit';
-                $message = '<a href="'. URL .'?url=register&submit=confirm&login='. $login .'&key='. $key .'">Confirm your account</a>';
+                $message = '<a href="'. URL .'?url=reset&key='. $key .'">Reset your password</a>';
                 mail($email, "Camagru reset password", $message, $header);
                 echo 0;
             } else {

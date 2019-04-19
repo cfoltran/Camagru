@@ -8,6 +8,7 @@ h1 {
 }
 
 .error {
+  margin: 10px;
   border-radius: 3px;
   text-align: center;
   background-color: rgba(197, 114, 114, 0.288);
