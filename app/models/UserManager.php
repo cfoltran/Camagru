@@ -125,12 +125,28 @@
         }
 
         public function getMailById($id_user) {
-            $query = "SELECT email FROM users WHERE id_user LIKE '$id_user'";
+            $query = "SELECT email FROM users WHERE id_user LIKE $id_user";
             $req = $this->getCo()->prepare($query);
             $req->execute();
             $data = $req->fetch(PDO::FETCH_ASSOC);
             $req->closeCursor();
             return ($data['email']);
+        }
+
+        public function getNotif($id_user) {
+            $query = "SELECT notif FROM users WHERE id_user = $id_user";
+            $req = $this->getCo()->prepare($query);
+            $req->execute();
+            $data = $req->fetch(PDO::FETCH_ASSOC);
+            $req->closeCursor();
+            return ($data['notif']);
+        }
+
+        public function setNotif($id_user, $notif) {
+            $query = "UPDATE users SET notif = $notif WHERE id_user = $id_user";
+            $req = $this->getCo()->prepare($query);
+            $req->execute();
+            $req->closeCursor();
         }
     }
 ?>

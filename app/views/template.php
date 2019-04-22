@@ -29,12 +29,16 @@
     </div>
     <div id="modalUser" class="modal">
         <div class="modal-content">
+            <button onclick="displayForm('notifications')">Notifications</button>
             <button onclick="displayForm('update-passwd')">Update password</button>
             <button onclick="displayForm('del-account')">Delete account</button>
-            <button onclick="displayForm('update-login')">Change your login</button>
-            <button onclick="displayForm('update-email')">Change your email</button>
-
+            <button onclick="displayForm('update-login')">Update login</button>
+            <button onclick="displayForm('update-email')">Update email</button>
             <div class="form-zone">
+                <div class="form-body" id="notifications">
+                    <h2 style="text-align: center">Notifications 🔔</h2>
+                    <button class="off" onclick="setNotifSet()"></button>
+                </div>
                 <div class="form-body" id="update-passwd">
                     <h2 style="text-align: center">Update your password 🆕</h2>
                     <input type="password" class="input-box" id="oldPasswd" placeholder="Old password" required>

@@ -11,6 +11,7 @@ var modalUser = document.getElementById('modalUser');
 // Display the good interfaces
 const displayModalUser = () => {
     modalUser.style.display = "block";
+    getNotifSet();
 }
 
 window.onclick = (event) => {
@@ -25,6 +26,7 @@ const hide = () => {
     document.getElementById('del-account').style.display = 'none';
     document.getElementById('update-login').style.display = 'none';
     document.getElementById('update-email').style.display = 'none';
+    document.getElementById('notifications').style.display = 'none';
 }
 
 const displayForm = (name) => {
@@ -73,4 +75,42 @@ const updateLogin = () => {
         }
     });
     xhr.send("login=" + login);
+}
+
+// Get the status of notifications
+const getNotifSet = () => {
+    let item = document.getElementById('notifications').getElementsByTagName('button')[0];
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '?url=login&submit=getNotif');
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.addEventListener('readystatechange', () => {
+        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+            if (xhr.response === '1') {
+                item.className = "on";
+                item.textContent = "NOTIFICATIONS ENABLE";
+            } else {
+                item.className = "off"
+                item.textContent = "NOTIFICATIONS DISABLE";
+            }
+        }
+    });
+    xhr.send(null);
+}
+
+// Switch the notifications state
+const setNotifSet = () => {
+    let item = document.getElementById('notifications').getElementsByTagName('button')[0];
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '?url=login&submit=setNotif');
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    if (item.className === "off") {
+        notif = 1;
+        item.className = "on";
+        item.textContent = "NOTIFICATIONS ENABLE";
+    } else {
+        notif = 0;
+        item.className = "off";
+        item.textContent = "NOTIFICATIONS DISABLE";
+    }
+    xhr.send("notif=" + notif);
 }

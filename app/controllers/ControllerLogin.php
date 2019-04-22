@@ -19,6 +19,10 @@
                 $this->_updateLogin();
             } else if ($_GET['submit'] === 'resetPasswd') {
                 $this->_resetPasswd();
+            } else if ($_GET['submit'] === 'getNotif') {
+                $this->_getNotif();
+            } else if ($_GET['submit'] === 'setNotif') {
+                $this->_setNotif();
             } else {
                 $this->loginView();
             }
@@ -115,6 +119,20 @@
             } else {
                 echo 1;
             }
+        }
+
+        private function _getNotif() {
+            session_start();
+            $this->_userManager = new UserManager;
+            echo $this->_userManager->getNotif($_SESSION['id']);
+        }
+
+        private function _setNotif() {
+            session_start();
+            $notif = $_POST['notif'];
+            var_dump($notif);
+            $this->_userManager = new UserManager;
+            $this->_userManager->setNotif($_SESSION['id'], $notif);
         }
     }  
 ?>
