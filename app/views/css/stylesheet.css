@@ -307,31 +307,32 @@ article {
 /* ================================================= */
 
 #pub {
-  width: 70%;
+  width: 80%;
   margin: 0 auto;
 }
 
 #pub-info {
-  position: fixed;
   display: inline-block;
+}
+
+#pub img {
+  position: fixed;
   width: 40%;
 }
 
 #com-zone {
+  width: 40%;
   float: right;
-  width: 50%;
 }
 
 .comment {
-  width: 680px;
   margin-top: 10px;
-  padding: 2px 15px 2px 15px;
+  padding: 2px 15px 2px;
   border-radius: 70px;
   background-color: rgba(94, 94, 94, 0.1);
 }
 
 .input-com {
-  width: 70%;
   height: 40px;
   border: 0;
 }
@@ -342,13 +343,17 @@ article {
 }
 
 @media screen and (max-width: 600px) {
-  #com-info {
+  #pub-info {
+    display: block;
+  }
+
+  #pub img {
     position: relative;
     width: 100%;
   }
-  
+
   #com-zone {
-    display: block;
     width: 100%;
+    position: relative;
   }
 }
