@@ -11,7 +11,7 @@
         <div id="com-zone">
             <h2>Comments</h2>
             <input class="input-com comment" id="comment" type="text" placeholder="Leave a comment">
-            <button class="btn-blue" onclick="comment(<?= $pub->getId() ?>, '<?= $login ?>')">Comment</button>
+            <button class="btn-blue" onclick="comment(<?= $pub->getId() ?>, '<?= $login ?>', <?= $pub->getIdUser() ?>)">Comment</button>
             <div class="comment" style="display: none"><p></p></div>
             <?php
                 foreach ($pub->getComments() as $comment): ?>

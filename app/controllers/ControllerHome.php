@@ -10,8 +10,6 @@
                 throw new Exception('Page not found');
             } else if ($_GET['submit'] === 'like') {
                 $this->_like();
-            } else if ($_GET['submit'] === 'comment') {
-                $this->_comment();
             } else {
                 $this->photos();
             }
@@ -40,19 +38,6 @@
                     $this->_photosManager->unlike($id_photo, $id_user);
                     echo -1;
                 }
-            }
-        }
-
-        private function _comment() {
-            session_start();
-            $id_photo = $_POST['idPhoto'];
-            $comment = $_POST['comment'];
-            $id_user = $_SESSION['id'];
-            if ($_SESSION['login'] === null) {
-                var_dump('error');
-            } else {
-                $this->_photosManager = new PhotoManager;
-                $this->_photosManager->comment($id_photo, $id_user, $comment);
             }
         }
     }

@@ -123,5 +123,14 @@
             $req->closeCursor();
             return ($data['login']);
         }
+
+        public function getMailById($id_user) {
+            $query = "SELECT email FROM users WHERE id_user LIKE '$id_user'";
+            $req = $this->getCo()->prepare($query);
+            $req->execute();
+            $data = $req->fetch(PDO::FETCH_ASSOC);
+            $req->closeCursor();
+            return ($data['email']);
+        }
     }
 ?>
