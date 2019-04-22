@@ -296,24 +296,48 @@ article {
 /* ================================================= */
 
 #pub {
-  margin: auto;
+  padding: 40px;
+  margin: 0 auto;
+}
+
+#pub-info {
+  position: fixed;
+  display: inline-block;
   width: 40%;
 }
 
-#pub img {
-  width: 680px;
-  height: 480px;
-}
-
 .comment {
+  width: 680px;
   margin-top: 10px;
   padding: 2px 15px 2px 15px;
   border-radius: 70px;
   background-color: rgba(94, 94, 94, 0.1);
 }
 
+#com-zone {
+  float: right;
+  width: 50%;
+}
+
 .input-com {
-  width: 80%;
+  width: 70%;
   height: 40px;
   border: 0;
+}
+
+#com-zone button {
+  margin-top: 10px;
+  display: inline-block;
+}
+
+@media screen and (max-width: 600px) {
+  #pub img {
+    position: relative;
+    width: 100%;
+  }
+  
+  #com-zone {
+    display: block;
+    width: 100%;
+  }
 }

@@ -24,16 +24,3 @@ const like = (idPhoto, index, loggued) => {
         alert("You must be connected to like publication 😭");
     }
 }
-
-const comment = (idPhoto) => {
-    var comment = document.getElementById('comment').value;
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '?url=home&submit=comment');
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhr.addEventListener('readystatechange', () => {
-        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-            console.log('comment');
-        }
-    });
-    xhr.send("idPhoto=" + idPhoto + "&comment=" + comment);
-}

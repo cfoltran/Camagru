@@ -21,7 +21,7 @@ class PhotoManager extends Model {
     }
 
     public function comment($id_photo, $id_user, $comment) {
-        $query = "INSERT INTO comments VALUE($id_photo, $id_user, '$comment')";
+        $query = "INSERT INTO comments VALUE(id_comment, $id_photo, $id_user, '$comment')";
         $req = $this->getCo()->prepare($query);
         $req->execute();
         $req->closeCursor();
@@ -64,11 +64,14 @@ class PhotoManager extends Model {
     }
 
     public function getComments($id_photo) {
-        $query = "SELECT comment FROM comments WHERE id_photo LIKE $id_photo";
+        $tab = [];
+        $query = "SELECT * FROM comments WHERE id_photo LIKE $id_photo";
         $req = $this->getCo()->prepare($query);
         $req->execute();
-        $data = $req->fetch(PDO::FETCH_ASSOC);
-        return ($data);
+        while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
+            $tab[] = $data;
+        }
+        return ($tab);
         $req->closeCursor();
     }
 

@@ -46,21 +46,21 @@
                 $this->_view->generate(array('err' => $err));
             } else {
                 // Hash the user password
+                        // Let's add the little new
+                $key = '';
+                // Create the confirmation key for the mail
+                for ($i = 0; $i < 14; $i++) {
+                    $key .= mt_rand(0, 9);
+                }
                 $hash = hash('whirlpool', $passwd1);
                 $this->_userManager->addUser($firstname, $lastname, $login, $mail, $hash, $key);
-                $this->_sendConfirmationMail($login, $mail);
+                $this->_sendConfirmationMail($login, $mail, $key);
                 $this->_view = new View('Login');
                 $this->_view->generate(array('info' => "Check your mailbox before signin"));
             }
         }
 
-        private function _sendConfirmationMail($login, $mail) {
-            // Let's add the little new
-            $key = '';
-            // Create the confirmation key for the mail
-            for ($i = 0; $i < 14; $i++) {
-                $key .= mt_rand(0, 9);
-            }
+        private function _sendConfirmationMail($login, $mail, $key) {
             $header = "MIME-Version: 1.0\r\n";
             $header .= 'From:"camagru.fr"<no-reply@camagru.fr>'."\n";
             $header .= 'Content-Type:text/html; charset="utf-8"'."\n";
@@ -78,6 +78,9 @@
                 $this->_userManager->confirmAccount($login);
                 $this->_view = new View('Login');
                 $this->_view->generate(array('info' => "Confirmation success"));
+            } else {
+                $this->_view = new View('Login');
+                $this->_view->generate(array('err' => "Oups an error occured"));
             }
         }
     }

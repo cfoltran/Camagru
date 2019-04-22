@@ -5,6 +5,7 @@ class Photo {
     private $_photo;
     private $_date;
     private $_photoManager;
+    private $_userManager;
 
     public function __construct(array $data) {
         $this->hydrate($data);
@@ -52,6 +53,10 @@ class Photo {
         return ($this->_id);
     }
 
+    public function getDate() {
+        return ($this->_date);
+    }
+
     public function getIdUser() {
         return ($this->_id_user);
     }
@@ -63,7 +68,7 @@ class Photo {
 
     public function getComments() {
         $this->_photoManager = new PhotoManager;
-        return ($this->_photoManager->getComments($this->getId()));
+        return ($this->_photoManager->getComments($this->_id));
     }
 
     public function getCommentNumber() {
@@ -71,9 +76,14 @@ class Photo {
         return ($this->_photoManager->getCommentNumber($this->getId()));
     }
 
-    // public function getCommentLogin() {
-    //     $this->_photoManager = new PhotoManager;
-    //     return ($this->_photoManager->getCommentNumber($this->getId()));
-    // }
+    public function getLoginOfPhotoOwner() {
+        $this->_userManager = new UserManager;
+        return ($this->_userManager->getLoginById($this->_id_user));
+    }
+
+    public function getLoginOfComment($id_user) {
+        $this->_userManager = new UserManager;
+        return ($this->_userManager->getLoginById($id_user));
+    }
 }
 ?>

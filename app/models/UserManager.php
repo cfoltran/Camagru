@@ -114,5 +114,14 @@
             $req->execute();
             $req->closeCursor();
         }
+
+        public function getLoginById($id_user) {
+            $query = "SELECT login FROM users WHERE id_user LIKE '$id_user'";
+            $req = $this->getCo()->prepare($query);
+            $req->execute();
+            $data = $req->fetch(PDO::FETCH_ASSOC);
+            $req->closeCursor();
+            return ($data['login']);
+        }
     }
 ?>
