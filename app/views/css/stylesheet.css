@@ -187,6 +187,11 @@ footer {
     display: block;
     width: 100%;
   }
+
+  #cam-filters img {
+    position: relative;
+    width: 100%;
+  }
 }
 
 #video {
@@ -221,8 +226,7 @@ footer {
   justify-content: center;
 }
 
-[type=radio] { 
-  position: absolute;
+[type=radio] {
   opacity: 0;
   width: 0;
   height: 0;
@@ -238,6 +242,7 @@ footer {
 }
 
 #cam-filters img {
+  margin: auto;
   max-width: 200px;
   height: 250px;
   margin: 20px;
