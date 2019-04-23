@@ -353,7 +353,7 @@ article {
 }
 
 #pub-info {
-  display: inline-block;
+  position: fixed;
 }
 
 #pub img {
@@ -386,6 +386,7 @@ article {
 @media screen and (max-width: 600px) {
   #pub-info {
     display: block;
+    position: relative;
   }
 
   #pub img {
