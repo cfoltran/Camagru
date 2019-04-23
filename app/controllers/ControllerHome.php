@@ -4,22 +4,30 @@
     class ControllerHome {
         private $_photosManager;
         private $_view;
+        private $_linit;
 
         public function __construct($url) {
             if (isset($url) && count($url) > 1) {
                 throw new Exception('Page not found');
             } else if ($_GET['submit'] === 'like') {
                 $this->_like();
+            } else if ($_GET['submit'] === 'page') {
+                $this->_limit = ($_GET['n'] + 1) * 9;
+                $this->photos();
             } else {
+                $this->_limit = 9;
                 $this->photos();
             }
         }
 
         private function photos() {
             $this->_photosManager = new PhotoManager;
-            $photos = $this->_photosManager->getPhotos();
+            $photos = $this->_photosManager->getAllPhotos($this->_limit);
             $this->_view = new View('Home');
-            $this->_view->generate(array('photos' => $photos));
+            $this->_view->generate(array(
+                'photos' => $photos,
+                'page' => $this->_limit / 9
+            ));
         }
 
         private function _like() {

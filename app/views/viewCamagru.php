@@ -24,16 +24,14 @@
         <?php
         $index = -1;
         session_start();
-        if ($photos != null): 
-            foreach ($photos as $photo): $index++?>
-                <article>
-                    <img class="article-img" src="data:image/jpeg;base64,<?= $photo->getPhoto()?>">
-                    <div class="article-title">
-                        <i class="fas fa-trash-alt" onclick="dropPhoto(<?= $photos[$index]->getId()?>, <?= $index ?>)"></i>
-                    </div>
-                </article>
-            <?php endforeach; ?>
-        <?php endif; ?>
+        foreach ($photos as $photo): $index++?>
+            <article>
+                <img class="article-img" src="data:image/jpeg;base64,<?= $photo->getPhoto()?>">
+                <div class="article-title">
+                    <i class="fas fa-trash-alt" onclick="dropPhoto(<?= $photos[$index]->getId()?>, <?= $index ?>)"></i>
+                </div>
+            </article>
+        <?php endforeach; ?>
     </section>
 </div>
 <script src="<?= URL ?>scripts/camagru.js"></script>

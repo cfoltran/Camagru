@@ -29,9 +29,6 @@
         }
 
         private function _catchPhoto() {
-            // $img = imagecreatefrompng(URL . 'public/asset/1.png');
-            // $src = imagecreatefrompng($_POST['img']);
-            // imagecopymerge($img, $src, 10, 10, 0, 0, 100, 47, 75);
             $img = $_POST['img'];
             if (strpos($img, 'data:image/png;base64') === 0) {
                 $img = str_replace('data:image/png;base64,', '', $img);

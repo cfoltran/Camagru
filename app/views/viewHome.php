@@ -25,5 +25,9 @@
             <?php endforeach; ?>
         <?php endif; ?>
     </section>
+    <div id="paginator">
+        <a id="btn-load" href="?url=home&submit=page&n=<?= $page ?>">Load photos</a>
+        <p>Page <?= $page ?></p>
+    </div>
 </div>
 <script src="<?= URL ?>scripts/home.js"></script>
