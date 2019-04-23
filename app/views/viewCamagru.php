@@ -9,6 +9,16 @@
             <button id="snap" type="button" class="btn-round rounded"><i class="fas fa-camera"></i></button>
             <button id="snap-push" type="submit" name="pic" class="btn-round rounded"><i class="fas fa-check"></i></button>
         </div>
+        <div id="cam-filters">
+            <label>
+                <input type="radio" name="filter" id="ok">
+                <img src="<?= URL ?>public/asset/1.png" alt="">
+            </label>
+            <label>
+                <input type="radio" name="filter" id="ok">
+                <img src="<?= URL ?>public/asset/2.png" alt="">
+            </label>
+        </div>
     </section>
     <section id="cards" class="cards">
         <?php
