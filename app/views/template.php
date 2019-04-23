@@ -48,8 +48,10 @@
                 </div>
                 <div class="form-body" id="del-account">
                     <h2 style="text-align: center">Delete your account 😭</h2>
-                    <input type="password" class="input-box" name="oldPasswd" placeholder="Enter your password" required>
-                    <button type="submit" class="btn btn-primary">Delete</button>
+                    <form method="POST" action="<?= URL ?>?url=login&submit=delAccount">
+                        <input type="password" class="input-box" name="passwd" placeholder="Enter your password" required>
+                        <button type="submit" class="btn btn-primary">Delete</button>
+                    </form>
                 </div>
                 <div class="form-body" id="update-login">
                     <h2 style="text-align: center">Update your login 🆕</h2>

@@ -23,6 +23,8 @@
                 $this->_getNotif();
             } else if ($_GET['submit'] === 'setNotif') {
                 $this->_setNotif();
+            } else if ($_GET['submit'] === 'delAccount') {
+                $this->_delAccount();
             } else {
                 $this->loginView();
             }
@@ -133,6 +135,29 @@
             var_dump($notif);
             $this->_userManager = new UserManager;
             $this->_userManager->setNotif($_SESSION['id'], $notif);
+        }
+
+        private function _delAccount() {
+            session_start();
+            $passwd = $_POST['passwd'];
+            $login = $_SESSION['login'];
+            $this->_userManager = new UserManager;
+            if ($this->_userManager->userExist($login) === false) {
+                $this->_error("The login doesn't exist");
+            } else {
+                $hash = hash('whirlpool', $passwd);
+                $logReq = $this->_userManager->login($login, $hash);
+                if ($logReq === 2) {
+                    $this->_error("Invalid password you have been disconnected");
+                } else {
+                    // Drop user
+                    $this->_userManager->dropUser($_SESSION['id']);
+                    $this->_view = new View('Login');
+                    $this->_view->generate(array(
+                        'info' => "Au revoir <b>" . $login . "</b> 😭 "
+                    ));
+                }
+            }          
         }
     }  
 ?>

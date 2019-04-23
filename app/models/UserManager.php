@@ -148,5 +148,17 @@
             $req->execute();
             $req->closeCursor();
         }
+
+        public function dropUser($id_user) {
+            $req = $this->getCo()->prepare("DELETE FROM likes WHERE id_user = $id_user");
+            $req->execute();
+            $req = $this->getCo()->prepare("DELETE FROM comments WHERE id_user = $id_user");
+            $req->execute();
+            $req = $this->getCo()->prepare("DELETE FROM photos WHERE id_user = $id_user");
+            $req->execute();
+            $req = $this->getCo()->prepare("DELETE FROM users WHERE id_user = $id_user");
+            $req->execute();
+            $req->closeCursor();
+        }
     }
 ?>
