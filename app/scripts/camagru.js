@@ -64,7 +64,10 @@ document.getElementById('snap-push').addEventListener("click", () => {
             preview.style.display = 'none';
             save.style.display = 'none';
             document.getElementById('photoInfo').textContent = "Photo correctly added to your library";
-            
+            var clone = document.getElementsByTagName('article')[0].cloneNode(true);
+            clone.style.display = 'block';
+            clone.style.src = document.getElementById('canvas');
+            document.getElementById('cards').appendChild(clone);
         }
     });
     xhr.send("img=" + dataURL);
