@@ -1,3 +1,6 @@
+// Set the selected filter
+var filter = "http://localhost:4200/public/asset/1.png";
+
 // Grab elements, create settings, etc.
 var video = document.getElementById('video');
 var preview = document.getElementById('canvas');
@@ -52,6 +55,10 @@ document.getElementById("snap").addEventListener("click", () => {
     }
 });
 
+const setFilter = (elem) => {
+    filter = elem.src;
+}
+
 document.getElementById('snap-push').addEventListener("click", () => {
     var canvas = document.getElementById('canvas');
     var dataURL = canvas.toDataURL();
@@ -70,7 +77,7 @@ document.getElementById('snap-push').addEventListener("click", () => {
             document.getElementById('cards').appendChild(clone);
         }
     });
-    xhr.send("img=" + dataURL);
+    xhr.send("img=" + dataURL + "&filter=" + filter);
 });
 
 // Drop the image on click

@@ -11,12 +11,20 @@
         </div>
         <div id="cam-filters">
             <label>
-                <input type="radio" name="filter" id="ok">
+                <input type="radio" name="filter" id="filter" checked="checked">
                 <img src="<?= URL ?>public/asset/1.png" alt="">
             </label>
             <label>
-                <input type="radio" name="filter" id="ok">
-                <img src="<?= URL ?>public/asset/2.png" alt="">
+                <input type="radio" name="filter" id="filter">
+                <img src="<?= URL ?>public/asset/2.png" onclick="setFilter(this)" alt="">
+            </label>
+            <label>
+                <input type="radio" name="filter" id="filter">
+                <img src="<?= URL ?>public/asset/3.png" alt="">
+            </label>
+            <label>
+                <input type="radio" name="filter" id="filter">
+                <img src="<?= URL ?>public/asset/4.png" alt="">
             </label>
         </div>
     </section>
