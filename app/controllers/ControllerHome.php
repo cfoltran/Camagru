@@ -12,10 +12,10 @@
             } else if ($_GET['submit'] === 'like') {
                 $this->_like();
             } else if ($_GET['submit'] === 'page') {
-                $this->_limit = ($_GET['n'] + 1) * 9;
+                $this->_limit = ($_GET['n'] + 1) * 12;
                 $this->photos();
             } else {
-                $this->_limit = 9;
+                $this->_limit = 12;
                 $this->photos();
             }
         }
@@ -26,7 +26,7 @@
             $this->_view = new View('Home');
             $this->_view->generate(array(
                 'photos' => $photos,
-                'page' => $this->_limit / 9
+                'page' => $this->_limit / 12
             ));
         }
 

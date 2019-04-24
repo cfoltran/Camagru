@@ -44,15 +44,19 @@
 
         private function _sendNotification($login, $id_user, $id_photo, $comment) {
             $this->_userManager = new UserManager;
-            $mail = $this->_userManager->getMailById($id_user);
-            $header = "MIME-Version: 1.0\r\n";
-            $header .= 'From:"camagru.fr"<no-reply@camagru.fr>'."\n";
-            $header .= 'Content-Type:text/html; charset="utf-8"'."\n";
-            $header .= 'Content-Transfer-Encoding: 8bit';
-            $message = "<h1 style='color: rgb(21, 127, 251)'>". $login . " leave a comment on your publication</h1>";
-            $message .= "<p>" . $comment . "</p>";
-            $message .= "<a href=" . URL . "?url=publication&id=" . $id_photo . ">Go to the publication</a>";
-            mail($mail, "Camagru new comment", $message, $header);
+            // Send mail if the photo owner had the notification enable
+            if ($this->_userManager->getNotifByPhotoOwner($id_photo) == true)
+            {
+                $mail = $this->_userManager->getMailById($id_user);
+                $header = "MIME-Version: 1.0\r\n";
+                $header .= 'From:"camagru.fr"<no-reply@camagru.fr>'."\n";
+                $header .= 'Content-Type:text/html; charset="utf-8"'."\n";
+                $header .= 'Content-Transfer-Encoding: 8bit';
+                $message = "<h1 style='color: rgb(21, 127, 251)'>". $login . " leave a comment on your publication</h1>";
+                $message .= "<p>" . $comment . "</p>";
+                $message .= "<a href=" . URL . "?url=publication&id=" . $id_photo . ">Go to the publication</a>";
+                mail($mail, "Camagru new comment", $message, $header);
+            }
         }
     }
 ?>

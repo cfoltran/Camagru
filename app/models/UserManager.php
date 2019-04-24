@@ -28,7 +28,7 @@
         }
 
         public function addUser($firstname, $lastname, $login, $mail, $hash, $key) {
-            $query = "INSERT INTO users VALUES(id_user, '$firstname', '$lastname', '$login', '$mail', '$hash', '$key', false)";
+            $query = "INSERT INTO users VALUES(id_user, '$firstname', '$lastname', '$login', '$mail', '$hash', '$key', false, true)";
             $req = $this->getCo()->prepare($query);
             $req->execute();
             $req->closeCursor();
@@ -158,6 +158,19 @@
             $req->execute();
             $req = $this->getCo()->prepare("DELETE FROM users WHERE id_user = $id_user");
             $req->execute();
+            $req->closeCursor();
+        }
+
+        public function getNotifByPhotoOwner($id_photo)
+        {
+            $query = "SELECT notif FROM users AS U
+                     INNER JOIN photos AS P ON U.id_user=P.id_user
+                     WHERE id_photo = $id_photo";
+            $req = $this->getCo()->prepare($query);
+            $req->execute();
+            $data = $req->fetch(PDO::FETCH_ASSOC);
+            var_dump($data);
+            return ($data['notif']);
             $req->closeCursor();
         }
     }
