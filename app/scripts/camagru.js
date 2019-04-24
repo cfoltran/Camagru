@@ -37,6 +37,7 @@ var context = canvas.getContext('2d');
 var video = document.getElementById('video');
 var save =   document.getElementById('snap-push');
 var cam = true;
+var upload = true;
 
 // Trigger photo take
 document.getElementById("snap").addEventListener("click", () => {
@@ -52,6 +53,19 @@ document.getElementById("snap").addEventListener("click", () => {
         preview.style.display = 'none';
         save.style.display = 'none';
         cam = true;
+    }
+});
+
+
+document.getElementById("import").addEventListener("click", () => {
+    if (upload) {
+        video.style.display = 'none';
+        document.getElementById('import-zone').style.display = 'block';
+        upload = false;
+    } else {
+        video.style.display = 'block';
+        document.getElementById('import-zone').style.display = 'none';
+        upload = true;
     }
 });
 

@@ -172,6 +172,16 @@ footer {
   width: 40%;
 }
 
+#import-zone {
+  display: none;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 600px;
+  padding: 20px 0px 20px 0px;
+  border: solid black 1px;
+  border-radius: 5px;
+}
+
 #cards {
   float: right;
   width: 40%;

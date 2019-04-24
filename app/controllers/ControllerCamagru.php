@@ -10,6 +10,8 @@
                 $this->_catchPhoto();
             } else if ($_GET['submit'] === 'del') {
                 $this->_dropPhoto();
+            } else if ($_GET['submit'] === 'import') {
+                $this->_importPhoto();
             } else {
                 $this->camagruView();
             }
@@ -47,13 +49,22 @@
                 imagepng($dest,'public/asset/tmp.png');
                 $img = base64_encode(file_get_contents('public/asset/tmp.png'));
                 $this->_photoManager = new PhotoManager;
-                $userManager = new UserManager;
                 session_start();
                 $this->_photoManager->addImage($img, $_SESSION['id']);
                 imagedestroy($src);
                 imagedestroy($dest);
                 var_dump($filter);
             }
+        }
+
+        private function _importPhoto() {
+            session_start();
+            $file = basename($_FILES["img"]["name"]);
+            $img = base64_encode(file_get_contents($_FILES['img']['tmp_name']));
+            $this->_photoManager = new PhotoManager;
+            $this->_photoManager->addImage($img, $_SESSION['id']);
+            // Redirect to Camagru page
+            $this->camagruView();
         }
 
         private function _dropPhoto() {
