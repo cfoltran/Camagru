@@ -154,9 +154,7 @@
                     // Drop user
                     $this->_userManager->dropUser($_SESSION['id']);
                     $this->_view = new View('Login');
-                    $this->_view->generate(array(
-                        'info' => "Au revoir <b>" . $login . "</b> 😭 "
-                    ));
+                    $this->_logout();
                 }
             }          
         }
