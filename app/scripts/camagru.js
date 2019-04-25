@@ -96,13 +96,13 @@ document.getElementById('snap-push').addEventListener("click", () => {
 
 // Drop the image on click
 const dropPhoto = (id_photo, index) => {
+    console.log(index);
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '?url=camagru&submit=del');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.addEventListener('readystatechange', () => {
         if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-            document.getElementsByClassName('article-img')[index].remove();
-            document.getElementsByClassName('fa-trash-alt')[index].remove();
+            index.parentNode.parentNode.remove();
         }
     });
     xhr.send("idPhoto=" + id_photo);

@@ -4,7 +4,6 @@
     class ControllerHome {
         private $_photosManager;
         private $_view;
-        private $_linit;
 
         public function __construct($url) {
             if (isset($url) && count($url) > 1) {
@@ -12,7 +11,6 @@
             } else if ($_GET['submit'] === 'like') {
                 $this->_like();
             } else if ($_GET['submit'] === 'page') {
-                $this->_limit = ($_GET['n'] + 1) * 12;
                 $this->photos();
             } else {
                 $this->_limit = 12;
@@ -22,11 +20,15 @@
 
         private function photos() {
             $this->_photosManager = new PhotoManager;
-            $photos = $this->_photosManager->getAllPhotos($this->_limit);
+            $limit = ($_GET['n'] + 1) * 12;
+            $photos = $this->_photosManager->getAllPhotos($limit);
+            $pages = ceil($this->_photosManager->countPhotos() / 12);
+            // var_dump($limit . "   " . $pages);die();
             $this->_view = new View('Home');
             $this->_view->generate(array(
                 'photos' => $photos,
-                'page' => $this->_limit / 12
+                'page' => ($limit < $pages * 12) ? $limit / 12 : $pages,
+                'tpages' => $pages
             ));
         }
 

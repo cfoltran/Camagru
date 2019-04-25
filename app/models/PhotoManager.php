@@ -129,5 +129,13 @@ class PhotoManager extends Model {
         return $tab;
         $req->closeCursor();
     }
+
+    public function countPhotos() {
+        $req = $this->getCo()->prepare("SELECT COUNT(id_photo) AS 'nb_photos' FROM photos");
+        $req->execute();
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        return ($data['nb_photos']);
+        $req->closeCursor();
+    }
 }
 ?>

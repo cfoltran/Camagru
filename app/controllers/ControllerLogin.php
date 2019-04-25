@@ -94,10 +94,12 @@
         }
 
         private function _updateLogin() {
+            session_start();
             $login = $_POST['login'];
             $this->_userManager = new UserManager;
             if ($this->_userManager->userExist($login) === false) {
                 $this->_userManager->updateLogin($login);
+                // $_SESSION['login'] = $login;
                 echo 0;
             } else {
                 echo 1;

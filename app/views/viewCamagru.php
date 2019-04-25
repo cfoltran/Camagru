@@ -45,7 +45,7 @@
             <article>
                 <img class="article-img" src="data:image/jpeg;base64,<?= $photo->getPhoto()?>">
                 <div class="article-title">
-                    <i class="fas fa-trash-alt" onclick="dropPhoto(<?= $photos[$index]->getId()?>, <?= $index ?>)"></i>
+                    <i class="fas fa-trash-alt" onclick="dropPhoto(<?= $photos[$index]->getId()?>, this)"></i>
                 </div>
             </article>
         <?php endforeach; ?>

@@ -26,8 +26,10 @@
         <?php endif; ?>
     </section>
     <div id="paginator">
-        <a id="btn-load" href="?url=home&submit=page&n=<?= $page ?>">Load photos</a>
-        <p>Page <?= $page ?></p>
+        <?php if ($page < $tpages) : ?>
+            <a id="btn-load" href="?url=home&submit=page&n=<?= $page ?>">Load photos</a>
+        <?php endif; ?>
+        <p>Page <?= $page ?> / <?= $tpages ?></p>
     </div>
 </div>
 <script src="<?= URL ?>scripts/home.js"></script>

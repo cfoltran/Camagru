@@ -1,7 +1,7 @@
 var error = document.getElementById('login-error');
 var info = document.getElementById('login-info');
 
-const hide = () => {
+const hidePopUp = () => {
     error.style.display = 'none';
     info.style.display = 'none';
 }
@@ -13,7 +13,7 @@ const toggleForm = () => {
 
 // Let's save our user
 const resetPasswd = () => {
-    hide();
+    hidePopUp();
     var email = document.getElementById('email').value;
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '?url=login&submit=resetPasswd');

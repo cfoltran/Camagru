@@ -93,6 +93,7 @@
             $query = "UPDATE users SET login = '$login' WHERE login = '$old_login'";
             $req = $this->getCo()->prepare($query);
             $req->execute();
+            $_SESSION['login'] = $login;
             $req->closeCursor();
         }
 
