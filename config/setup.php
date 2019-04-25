@@ -1,21 +1,26 @@
 #!/usr/bin/php
 <?php
-    include ('model/database.php');
-    $con = mysqli_connect("localhost", "adm", "clemclem", "test");
-    if (!$con)
+    require_once('database.php');
+    $co = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+    if (!$co)
         die("An error occured 😥\n");
-    $db_query = "CREATE DATABASE camagrudb";
-    if (mysqli_query($con, $db_query))
+    $query = "CREATE DATABASE camagrudb";
+    $req = $co->prepare($query);
+    $req->execute();
+    if ($req)
         echo "Database created 👌 \n";
     else
         echo "An error occured 😥\n";
-    mysqli_close($con);
-    
-    $con = connect();
-    $all_query = file_get_contents('./SQL/create_tables.sql');
-    if (mysqli_multi_query($con, $all_query))
+    $req->closeCursor();
+    $all_query = file_get_contents('./camagrudb.sql');
+    try {
+        $co->exec($all_query);
         echo "Create table successfully 👌 \n";
-    else
+    }
+    catch (PDOException $e)
+    {
         echo "An error occured 😥\n";
-    mysqli_close($con);
+        echo $e->getMessage();
+        die();
+    }
 ?>
