@@ -21,25 +21,23 @@
         <div id="cam-filters">
             <label>
                 <input type="radio" name="filter" id="filter" checked="checked">
-                <img src="<?= URL ?>public/asset/1.png" alt="">
+                <img src="<?= URL ?>public/asset/1.png" onclick="setFilter(this)">
             </label>
             <label>
                 <input type="radio" name="filter" id="filter">
-                <img src="<?= URL ?>public/asset/2.png" onclick="setFilter(this)" alt="">
+                <img src="<?= URL ?>public/asset/2.png" onclick="setFilter(this)">
             </label>
             <label>
                 <input type="radio" name="filter" id="filter">
-                <img src="<?= URL ?>public/asset/3.png" alt="">
+                <img src="<?= URL ?>public/asset/3.png" onclick="setFilter(this)">
             </label>
             <label>
                 <input type="radio" name="filter" id="filter">
-                <img src="<?= URL ?>public/asset/4.png" alt="">
+                <img src="<?= URL ?>public/asset/4.png" onclick="setFilter(this)">
             </label>
         </div>
     </section>
     <section id="cards" class="cards">
-    <link rel="import" href="http://example.com/elements.html">
-
         <?php
         $index = -1;
         session_start();

@@ -87,7 +87,7 @@ document.getElementById('snap-push').addEventListener("click", () => {
             document.getElementById('photoInfo').textContent = "Photo correctly added to your library";
             var clone = document.getElementsByTagName('article')[0].cloneNode(true);
             clone.style.display = 'block';
-            clone.style.src = document.getElementById('canvas');
+            clone.getElementsByTagName('img')[0].src = "public/asset/tmp.png";
             document.getElementById('cards').appendChild(clone);
         }
     });
