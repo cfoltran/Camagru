@@ -60,8 +60,10 @@
                 </div>
                 <div class="form-body" id="update-email">
                     <h2 style="text-align: center">Update your email 🆕</h2>
-                    <input type="email" class="input-box" name="email" placeholder="Enter your new email" required>
-                    <button type="submit" class="btn btn-primary">Supprimer</button>
+                    <form action="<?= URL ?>?url=login&submit=updateMail" method="post">
+                        <input type="email" class="input-box" name="email" placeholder="Enter your new email" required>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
                 </div>
             </div>
             <div class="info" id="setting-info">

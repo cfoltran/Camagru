@@ -170,8 +170,14 @@
             $req = $this->getCo()->prepare($query);
             $req->execute();
             $data = $req->fetch(PDO::FETCH_ASSOC);
-            var_dump($data);
             return ($data['notif']);
+            $req->closeCursor();
+        }
+
+        public function updateMailById($id_user, $mail) {
+            $query = "UPDATE users SET email = '$mail' WHERE id_user = $id_user";
+            $req = $this->getCo()->prepare($query);
+            $req->execute();
             $req->closeCursor();
         }
     }

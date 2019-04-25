@@ -11,6 +11,8 @@
                 throw new Exception('Page not found');
             } else if ($_GET['submit'] == 'reset') {
                 $this->_reset();
+            } else if ($_GET['submit'] == 'mail') {
+                $this->_updateMail();
             } else {
                 $this->_resetView();
             }
@@ -41,6 +43,13 @@
                 $this->_view = new View('Login');
                 $this->_view->generate(array('info' => "Your password has been reset"));
             }
+        }
+
+        private function _updateMail() {
+            $this->_userManager = new UserManager;
+            $this->_userManager->updateMailById($_GET['id'], urldecode($_GET['mail']));
+            $this->_view = new View('Login');
+            $this->_view->generate(array('info' => "Your email has been reset"));
         }
     }
 ?>

@@ -19,6 +19,8 @@
                 $this->_updateLogin();
             } else if ($_GET['submit'] === 'resetPasswd') {
                 $this->_resetPasswd();
+            } else if ($_GET['submit'] == 'updateMail') {
+                $this->_updateMail();
             } else if ($_GET['submit'] === 'getNotif') {
                 $this->_getNotif();
             } else if ($_GET['submit'] === 'setNotif') {
@@ -157,6 +159,20 @@
                     $this->_logout();
                 }
             }          
+        }
+
+        private function _updateMail() {
+            session_start();
+            $mail = $_POST['email'];
+            $id_user = $_SESSION['id'];
+            $this->_userManager = new UserManager;
+            $header = "MIME-Version: 1.0\r\n";
+            $header .= 'From:"camagru.fr"<no-reply@camagru.fr>'."\n";
+            $header .= 'Content-Type:text/html; charset="utf-8"'."\n";
+            $header .= 'Content-Transfer-Encoding: 8bit';
+            $message = '<a href="'. URL .'?url=reset&submit=mail&mail='. urlencode($mail) . '&id='. $id_user .'">Reset your mail</a>';
+            mail($mail, "Camagru reset mail", $message, $header);
+            $this->_logout();
         }
     }  
 ?>
