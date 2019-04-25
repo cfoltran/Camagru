@@ -80,10 +80,23 @@
             $req->closeCursor();
         }
 
-        public function confirmAccount($login) {
-            $query = "UPDATE users SET confirm = true";
+        public function updateConfKey($login) {
+            $key = '';
+            // Create the confirmation key for the mail
+            for ($i = 0; $i < 14; $i++) {
+                $key .= mt_rand(0, 9);
+            }
+            $query = "UPDATE users SET confirmKey = $key WHERE login = '$login'";
             $req = $this->getCo()->prepare($query);
             $req->execute();
+            $req->closeCursor();
+        }
+
+        public function confirmAccount($login, $key) {
+            $query = "UPDATE users SET confirm = true WHERE login = '$login'";
+            $req = $this->getCo()->prepare($query);
+            $req->execute();
+            $this->updateConfKey($login);
             $req->closeCursor();
         }
 
@@ -107,7 +120,7 @@
         }
 
         public function resetPasswd($hash, $key, $newKey) {
-            $query = "UPDATE users SET passwd = '$hash' WHERE $key LIKE $key";
+            $query = "UPDATE users SET passwd = '$hash' AND confirmKey=$newKey WHERE $key LIKE $key";
             $req = $this->getCo()->prepare($query);
             $req->execute();
             $query = "UPDATE users SET confirmKey = '$newKey' WHERE $key LIKE '$key'";

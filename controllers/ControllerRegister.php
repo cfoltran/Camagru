@@ -75,7 +75,7 @@
 
             $this->_userManager = new UserManager;
             if ($this->_userManager->checkConfKey($key, $login) === true) {
-                $this->_userManager->confirmAccount($login);
+                $this->_userManager->confirmAccount($login, $key);
                 $this->_view = new View('Login');
                 $this->_view->generate(array('info' => "Confirmation success"));
             } else {
