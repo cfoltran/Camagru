@@ -21,7 +21,7 @@
         private function photos() {
             $this->_photosManager = new PhotoManager;
             $limit = ($_GET['n'] + 1) * 12;
-            $photos = $this->_photosManager->getAllPhotos($limit);
+            $photos = array_reverse($this->_photosManager->getAllPhotos($limit));
             $pages = ceil($this->_photosManager->countPhotos() / 12);
             // var_dump($limit . "   " . $pages);die();
             $this->_view = new View('Home');

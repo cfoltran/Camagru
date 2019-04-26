@@ -121,7 +121,7 @@ class PhotoManager extends Model {
 
     public function getAllPhotos($limit) {
         $tab = [];
-        $req = $this->getCo()->prepare("SELECT * FROM photos ORDER BY date ASC LIMIT $limit");
+        $req = $this->getCo()->prepare("SELECT * FROM photos ORDER BY date DESC LIMIT $limit");
         $req->execute();
         while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
             $tab[] = new Photo($data);
