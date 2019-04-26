@@ -49,7 +49,7 @@
         }
 
         private function _login() {
-            $login = $_POST['login'];
+            $login = htmlentities($_POST['login']);
             $passwd = $_POST['passwd'];
             $this->_userManager = new UserManager;
             if ($this->_userManager->userExist($login) === false) {
@@ -108,7 +108,7 @@
         }
 
         private function _resetPasswd() {
-            $email = $_POST['email'];
+            $email = htmlentities($_POST['email']);
             $key = '';
             $this->_userManager = new UserManager;
             $key = $this->_userManager->getConfirmKey($email);
@@ -163,7 +163,7 @@
 
         private function _updateMail() {
             session_start();
-            $mail = $_POST['email'];
+            $mail = htmlentities($_POST['email']);
             $id_user = $_SESSION['id'];
             $this->_userManager = new UserManager;
             $header = "MIME-Version: 1.0\r\n";

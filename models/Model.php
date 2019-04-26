@@ -5,6 +5,7 @@
         private static function setCo() {
             self::$_co = new PDO("mysql:host=localhost:3306;dbname=camagrudb", 'adm', 'clemclem');
             self::$_co->setAttribute(PDO::ERRMODE_EXCEPTION, PDO::ERRMODE_WARNING);
+            self::$_co->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         }
 
         protected function getCo() {

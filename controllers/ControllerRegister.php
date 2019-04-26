@@ -27,10 +27,10 @@
         }
 
         private function _checks() {
-            $firstname = $_POST['firstname'];
-            $lastname = $_POST['lastname'];
-            $login = $_POST['login'];
-            $mail = $_POST['mail'];
+            $firstname = htmlentities($_POST['firstname']);
+            $lastname = htmlentities($_POST['lastname']);
+            $login = htmlentities($_POST['login']);
+            $mail = htmlentities($_POST['mail']);
             $passwd1 = $_POST['passwd1'];
             $passwd2 = $_POST['passwd2'];
             $this->_userManager = new UserManager;

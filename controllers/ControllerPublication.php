@@ -29,7 +29,7 @@
         private function _comment() {
             session_start();
             $id_photo = $_POST['idPhoto'];
-            $comment = $_POST['comment'];
+            $comment = htmlentities($_POST['comment']);
             $login = $_POST['login'];
             $id_user = $_POST['idUser'];
             $id_user = $_SESSION['id'];
