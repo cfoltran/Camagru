@@ -43,10 +43,14 @@
         </div>
     </section>
     <section id="cards" class="cards">
-        <?php
-        $index = -1;
-        session_start();
-        foreach ($photos as $photo): $index++?>
+        <?php $index = -1;?> 
+        <article style="display: none">
+            <img class="article-img">
+            <div class="article-title">
+                <i class="fas fa-trash-alt"></i>
+            </div>
+        </article>
+        <?php foreach ($photos as $photo): $index++?>
             <article>
                 <img class="article-img" src="data:image/jpeg;base64,<?= $photo->getPhoto()?>">
                 <div class="article-title">
