@@ -10,10 +10,7 @@ const comment = (idPhoto, login, idUser) => {
             clone.style.display = 'block';
             clone.innerHTML = "<p><b class='btn-blue'>" + login + "</b> " + comment + "</p>";
             document.getElementById('com-zone').appendChild(clone);
-            document.getElementsByClassName('input-com')[0].value = '';
         }
     });
     xhr.send("idPhoto=" + idPhoto + "&comment=" + comment + "&login=" + login + "&idUser" + idUser);
 }
-
-const test =() => {alert("ok"); return true;}

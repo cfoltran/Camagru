@@ -7,9 +7,7 @@ var preview = document.getElementById('canvas');
 
 // Get access to the camera!
 if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    // Not adding `{ audio: true }` since we only want video now
     navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
-        //video.src = window.URL.createObjectURL(stream);
         video.srcObject = stream;
         video.play();
     });
@@ -42,6 +40,7 @@ var upload = true;
 // Trigger photo take
 document.getElementById("snap").addEventListener("click", () => {
     if (cam) {
+        document.getElementById('filter-preview').style.display = 'none';
         context.drawImage(video, 0, 0, 640, 480);
         video.style.display = 'none';
         preview.style.display = 'block';
@@ -71,6 +70,7 @@ document.getElementById("import").addEventListener("click", () => {
 
 const setFilter = (elem) => {
     filter = elem.src;
+    document.getElementById('filter-preview').src = filter;
 }
 
 document.getElementById('snap-push').addEventListener("click", () => {

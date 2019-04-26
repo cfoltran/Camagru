@@ -2,7 +2,12 @@
     <?php session_start() ?>
     <h1>Hello <?= $_SESSION['login'] ?></h1>
     <section id="cam">
-        <video id="video" width="640px" autoplay></video>
+        <div id="video_box">
+            <div id="video_overlays"><img id="filter-preview" src="<?= URL ?>public/asset/1.png" alt=""></div>
+            <div>
+                <video id="video" width="640px" autoplay></video>
+            </div>
+        </div>
         <canvas id="canvas" value="pic" height="480px" width="640px"></canvas>
         <div class="info" id="photoInfo"></div>
         <div id="import-zone">
