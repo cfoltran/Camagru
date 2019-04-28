@@ -1,7 +1,7 @@
 <div class="form-zone">
     <div class="form-body">
         <form method="POST" action="<?= URL ?>?url=login&submit=login">
-            <h1>Bienvenue sur <span style="font-family: monospace">Camagru</span> !</h1>
+            <h1>Welcome on Camagru !</h1>
             <div class="info" id="login-info">
                 <?= $info ?>
             </div>

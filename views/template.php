@@ -74,6 +74,7 @@
         </div>
     </div>
     <?= $content ?>
+    <button id="feedback"></button>
     <footer>
         <p>© 2019 made with ☕️ by Clément</p>
     </footer>

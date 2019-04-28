@@ -1,5 +1,6 @@
 html {
   font-family: Helvetica;
+  background-color: rgb(221, 220, 220);
 }
 
 h1 {
@@ -25,14 +26,20 @@ h1 {
 
 
 /* ================================================= */
-/*                      INPUT                        */
+/*                      INPUTS                       */
 /* ================================================= */
 
 .input-box {
     border: none;
     font-size: 18px;
     margin-bottom: 30px;
-    border-bottom: 1px solid black;
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.input-box:focus {
+  background-color: rgba(113, 166, 216, 0.219);
 }
 
 button, a {
@@ -136,18 +143,20 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 50%;
-  -webkit-transform: translateY(40%);
-  -ms-transform: translateY(40%);
-  transform: translateY(40%);
+  -webkit-transform: translateY(10%);
+  -ms-transform: translateY(10%);
+  transform: translateY(10%);
 }
 
 .form-body {
   width: 400px;
+  padding: 40px;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
 }
 
 .input-box {
-  width: 100%;
+  width: 100%; 
 }
 
 /* ================================================= */
@@ -450,4 +459,20 @@ article {
     width: 100%;
     position: relative;
   }
+}
+
+
+
+/* ================================================= */
+/*                      FEEDBACK                     */
+/* ================================================= */
+
+#feedback {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: rgb(180, 129, 129);
+  border-radius: 100%;
+  bottom: 90px;
+  right: 20px;
 }
