@@ -1,6 +1,6 @@
 html {
   font-family: Helvetica;
-  background-color: rgb(221, 220, 220);
+  background-color: rgb(220, 220, 220);
 }
 
 h1 {
@@ -195,7 +195,7 @@ footer {
   text-align: center;
   width: 100%;
   padding: 20px 0px 20px 0px;
-  border: solid black 1px;
+  background-color: white;
   border-radius: 5px;
 }
 
@@ -292,13 +292,12 @@ footer {
   min-height: 40px;
   z-index: 300000;
   bottom: 0%;
-  /* left: 5%; */
   text-align:center;
 }
 
 @media screen and (max-width: 1900px) {
   #video_overlays {
-    display:none;
+    display: none;
   }
 }
 
