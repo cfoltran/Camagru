@@ -28,16 +28,25 @@
         }
 
         public function addUser($firstname, $lastname, $login, $mail, $hash, $key) {
-            $query = "INSERT INTO users VALUES(id_user, '$firstname', '$lastname', '$login', '$mail', '$hash', '$key', false, true)";
+            $query = "INSERT INTO users VALUES(id_user, :firstname, :lastname, :login, :mail, :hash, :key, false, true)";
             $req = $this->getCo()->prepare($query);
-            $req->execute();
+            $req->execute([
+                ':firstname' => $firstname,
+                ':lastname' => $lastname,
+                ':login' => $login,
+                ':mail' => $mail,
+                ':hash' => $hash,
+                ':key' => $key
+            ]);
             $req->closeCursor();
         }
 
         public function login($login, $hash) {
-            $query = "SELECT passwd, confirm FROM users WHERE login = '$login'";
+            $query = "SELECT passwd, confirm FROM users WHERE login = :login";
             $req = $this->getCo()->prepare($query);
-            $req->execute();
+            $req->execute([
+                ':login' => $login
+            ]);
             $data = $req->fetch(PDO::FETCH_ASSOC);
             if ($data['confirm'] == 0) {
                 return (1);
@@ -50,9 +59,12 @@
         }
 
         public function checkPassword($hash, $login) {
-            $query = "SELECT * FROM users WHERE login LIKE '$login' AND passwd LIKE '$hash'";
+            $query = "SELECT * FROM users WHERE login LIKE :login AND passwd LIKE :hash";
             $req = $this->getCo()->prepare($query);
-            $req->execute();
+            $req->execute([
+                ':login' => $login,
+                ':hash' => $hash
+            ]);
             while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
                 if (isset($data))
                     return (true);
@@ -62,9 +74,12 @@
         }
 
         public function updatePassword($hash, $login) {
-            $query = "UPDATE users SET passwd='$hash' WHERE login LIKE '$login'";
+            $query = "UPDATE users SET passwd = :hash WHERE login LIKE :login";
             $req = $this->getCo()->prepare($query);
-            $req->execute();
+            $req->execute([
+                ':hash' => $hash,
+                ':login' => $login
+            ]);
             $req->closeCursor();
         }
 
