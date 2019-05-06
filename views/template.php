@@ -74,7 +74,7 @@
         </div>
     </div>
     <?= $content ?>
-    <button id="feedback"></button>
+    <a id="feedback" href="<?= URL ?>?url=feedback"><i class="fas fa-comments"></i></a>
     <footer>
         <p>© 2019 made with ☕️ by Clément</p>
     </footer>
