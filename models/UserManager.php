@@ -84,9 +84,12 @@
         }
 
         public function checkConfKey($key, $login) {
-            $query = "SELECT * FROM users WHERE login LIKE '$login' AND confirmKey LIKE '$key'";
+            $query = "SELECT * FROM users WHERE login LIKE :login AND confirmKey LIKE :key";
             $req = $this->getCo()->prepare($query);
-            $req->execute();
+            $req->execute([
+                ':login' => $login,
+                ':key' => $key
+            ]);
             while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
                 if (isset($data))
                     return (true);
@@ -107,7 +110,7 @@
             $req->closeCursor();
         }
 
-        public function confirmAccount($login, $key) {
+        public function confirmAccount($login) {
             $query = "UPDATE users SET confirm = true WHERE login = '$login'";
             $req = $this->getCo()->prepare($query);
             $req->execute();
@@ -118,9 +121,9 @@
         public function updateLogin($login) {
             session_start();
             $old_login = $_SESSION['login'];
-            $query = "UPDATE users SET login = '$login' WHERE login = '$old_login'";
+            $query = "UPDATE users SET login = :login WHERE login = '$old_login'";
             $req = $this->getCo()->prepare($query);
-            $req->execute();
+            $req->execute([':login' => $login]);
             $_SESSION['login'] = $login;
             $req->closeCursor();
         }

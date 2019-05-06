@@ -21,9 +21,12 @@ class PhotoManager extends Model {
     }
 
     public function comment($id_photo, $id_user, $comment) {
-        $query = "INSERT INTO comments VALUE(id_comment, $id_photo, $id_user, '$comment')";
+        $query = "INSERT INTO comments VALUE(id_comment, :id_photo, $id_user, :comment)";
         $req = $this->getCo()->prepare($query);
-        $req->execute();
+        $req->execute([
+            ':id_photo' => $id_photo,
+            ':comment' => $comment
+        ]);
         $req->closeCursor();
     }
 

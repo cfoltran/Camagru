@@ -46,6 +46,7 @@ button, a {
     border: none;
     font-size: 15px;
     color: rgb(21, 127, 251);
+    cursor: pointer;
 }
 
 button:hover { 
@@ -410,6 +411,8 @@ article {
 .on:hover  { background:rgb(45, 94, 45); }
 .off { background:rgba(197, 114, 114, 0.288); }
 .off:hover { background:rgb(184, 99, 99); }
+
+#setting-info, #setting-error { position: relative; }
 
 /* ================================================= */
 /*                      PUBLICATION                  */
