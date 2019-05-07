@@ -8,8 +8,10 @@ const comment = (idPhoto, login, idUser) => {
             var clone;
             clone = document.getElementsByClassName('comment')[1].cloneNode(true);
             clone.style.display = 'block';
-            clone.innerHTML = "<p><b class='btn-blue'>" + login + "</b> " + comment + "</p>";
-            document.getElementById('com-zone').appendChild(clone);
+        
+            comBubble = document.getElementById('com-zone').appendChild(clone);
+            comBubble.innerHTML = "<p><b class='btn-blue'>" + login + "</b></p>";
+            comBubble.getElementsByTagName('p')[0].innerText = comment;
         }
     });
     xhr.send("idPhoto=" + idPhoto + "&comment=" + comment + "&login=" + login + "&idUser" + idUser);
