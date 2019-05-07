@@ -13,21 +13,20 @@
             } else if ($_GET['submit'] === 'page') {
                 $this->photos();
             } else {
-                $this->_limit = 12;
+                $this->_limit = 6;
                 $this->photos();
             }
         }
 
         private function photos() {
             $this->_photosManager = new PhotoManager;
-            $limit = ($_GET['n'] + 1) * 12;
-            $photos = array_reverse($this->_photosManager->getAllPhotos($limit));
-            $pages = ceil($this->_photosManager->countPhotos() / 12);
-            // var_dump($limit . "   " . $pages);die();
+            $limit = ($_GET['n'] + 1) * 6;
+            $photos = $this->_photosManager->getAllPhotos($limit);
+            $pages = ceil($this->_photosManager->countPhotos() / 6);
             $this->_view = new View('Home');
             $this->_view->generate(array(
                 'photos' => $photos,
-                'page' => ($limit < $pages * 12) ? $limit / 12 : $pages,
+                'page' => ($limit < $pages * 6) ? $limit / 6 : $pages,
                 'tpages' => $pages
             ));
         }

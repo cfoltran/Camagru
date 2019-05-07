@@ -16,7 +16,7 @@
                             <?php if ($loggued == true): ?>
                                 <i onclick="like(<?= $photo->getId() ?>, <?=$index?>, <?= $loggued ?>)"class="fas fa-thumbs-up"> <?= $photo->getLikeNumber($photo->getId()) ?></i>
                             <?php else: ?>
-                                <a style="color: black" href="<?URL?>?url=login"><i class="fas fa-thumbs-up"> <?= $photo->getLikeNumber($photo->getId()) ?></i></a>
+                                <a style="color: black" href="<?= URL ?>?url=login"><i class="fas fa-thumbs-up"> <?= $photo->getLikeNumber($photo->getId()) ?></i></a>
                             <?php endif; ?>
                             <i class="fas fa-comments"> <?= $photo->getCommentNumber()?></i>
                         </div>
