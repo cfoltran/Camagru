@@ -33,6 +33,13 @@
             $mail = htmlentities($_POST['mail']);
             $passwd1 = $_POST['passwd1'];
             $passwd2 = $_POST['passwd2'];
+            // Check the login format
+            if (preg_match('/[^a-z_\-0-9]/i', $login)) {
+                $err = "Only use alphanumeric characters for your login";
+                $this->_view = new View('Register');
+                $this->_view->generate(array('err' => $err));
+                return;
+            }
             $this->_userManager = new UserManager;
             // Ask to database if the user already exist
             $userExist = $this->_userManager->userExist($login);

@@ -480,7 +480,7 @@ article {
 /* ================================================= */
 
 #feedback {
-  position: absolute;
+  position: fixed;
   padding: 15px;
   text-align: center;
   color: black;
