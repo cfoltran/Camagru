@@ -21,11 +21,10 @@
         private function photos() {
             $this->_photosManager = new PhotoManager;
             $limit = ($_GET['n'] + 1) * 6;
-            $photos = $this->_photosManager->getAllPhotos($limit);
             $pages = ceil($this->_photosManager->countPhotos() / 6);
             $this->_view = new View('Home');
             $this->_view->generate(array(
-                'photos' => $photos,
+                'photos' => $this->_photosManager->getAllPhotos($limit),
                 'page' => ($limit < $pages * 6) ? $limit / 6 : $pages,
                 'tpages' => $pages
             ));
