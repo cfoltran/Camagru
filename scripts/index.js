@@ -68,7 +68,7 @@ const updateLogin = () => {
     xhr.addEventListener('readystatechange', () => {
         if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
             if (xhr.response == 1) {
-                document.getElementById('setting-error').textContent = "This login already taken";
+                document.getElementById('setting-error').textContent = "This login already taken or there are wrong characters";
             } else {
                 document.getElementById('setting-info').textContent = "Your login has been updated";
             }

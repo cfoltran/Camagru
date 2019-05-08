@@ -79,7 +79,8 @@ class PhotoManager extends Model {
     }
 
     public function addImage($data, $id_user) {
-        $query = "INSERT INTO photos VALUES(id_photo, '$data', NOW(), '$id_user')";
+        $timestamp = time();
+        $query = "INSERT INTO photos VALUES(id_photo, '$data', NOW(), $timestamp ,'$id_user')";
         $req = $this->getCo()->prepare($query);
         $req->execute();
         $req->closeCursor();
@@ -125,7 +126,7 @@ class PhotoManager extends Model {
     public function getAllPhotos($limit) {
         $tab = [];
         $min = $limit - 6;
-        $req = $this->getCo()->prepare("SELECT * FROM photos ORDER BY date DESC LIMIT $min, 6");
+        $req = $this->getCo()->prepare("SELECT * FROM photos ORDER BY timestamp DESC LIMIT $min, 6");
         $req->execute();
         while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
             $tab[] = new Photo($data);

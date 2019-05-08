@@ -99,7 +99,7 @@
             session_start();
             $login = $_POST['login'];
             $this->_userManager = new UserManager;
-            if ($this->_userManager->userExist($login) === false) {
+            if ($this->_userManager->userExist($login) === false && !preg_match('/[^a-z_\-0-9]/i', $login)) {
                 $this->_userManager->updateLogin($login);
                 echo 0;
             } else {
