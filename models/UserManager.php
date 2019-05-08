@@ -172,9 +172,9 @@
         }
 
         public function setNotif($id_user, $notif) {
-            $query = "UPDATE users SET notif = $notif WHERE id_user = $id_user";
+            $query = "UPDATE users SET notif = $notif WHERE id_user = :id_user";
             $req = $this->getCo()->prepare($query);
-            $req->execute();
+            $req->execute([':id_user' => $id_user]);
             $req->closeCursor();
         }
 
@@ -203,9 +203,12 @@
         }
 
         public function updateMailById($id_user, $mail) {
-            $query = "UPDATE users SET email = '$mail' WHERE id_user = $id_user";
+            $query = "UPDATE users SET email = :mail WHERE id_user = :id_user";
             $req = $this->getCo()->prepare($query);
-            $req->execute();
+            $req->execute([
+                ':mail' => $mail,
+                ':id_user' => $id_user
+            ]);
             $req->closeCursor();
         }
     }
