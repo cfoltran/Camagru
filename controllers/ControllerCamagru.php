@@ -53,7 +53,6 @@
                 $this->_photoManager->addImage($img, $_SESSION['id']);
                 imagedestroy($src);
                 imagedestroy($dest);
-                var_dump($filter);
             }
         }
 

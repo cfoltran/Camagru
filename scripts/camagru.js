@@ -57,6 +57,7 @@ document.getElementById("snap").addEventListener("click", () => {
 
 
 document.getElementById("import").addEventListener("click", () => {
+    document.getElementById('filter-preview').style.display = 'none';
     if (upload) {
         video.style.display = 'none';
         document.getElementById('import-zone').style.display = 'block';
