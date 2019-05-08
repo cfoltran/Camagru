@@ -36,7 +36,7 @@
             <div class="form-zone">
                 <div class="form-body" id="notifications">
                     <h2 style="text-align: center">Notifications 🔔</h2>
-                    <button class="off" onclick="setNotifSet()"></button>
+                    <button id="btn-psh" class="off" onclick="setNotifSet()"></button>
                 </div>
                 <div class="form-body" id="update-passwd">
                     <h2 style="text-align: center">Update your password 🆕</h2>
