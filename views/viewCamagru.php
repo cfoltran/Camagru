@@ -3,13 +3,12 @@
     <h1>Hello <?= $_SESSION['login'] ?></h1>
     <section id="cam">
         <div id="video_box">
-            <div id="video_overlays"><img id="filter-preview" src="<?= URL ?>public/asset/1.png" alt=""></div>
             <div>
                 <video id="video" width="640px" autoplay></video>
+                <canvas id="canvas" height="480px" width="640px"></canvas>        
             </div>
+            <div class="info" id="photoInfo"></div>
         </div>
-        <canvas id="canvas" value="pic" height="480px" width="640px"></canvas>
-        <div class="info" id="photoInfo"></div>
         <div id="import-zone">
             <form action="<?= URL ?>?url=camagru&submit=import" method="post" enctype="multipart/form-data">
                 <label>Import PNG image
@@ -25,7 +24,7 @@
         </div>
         <div id="cam-filters">
             <label>
-                <input type="radio" name="filter" id="filter" checked="checked">
+                <input type="radio" name="filter" id="filter">
                 <img src="<?= URL ?>public/asset/1.png" onclick="setFilter(this)">
             </label>
             <label>
