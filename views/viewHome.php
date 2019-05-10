@@ -32,8 +32,14 @@
         <?php endif; ?>
     </section>
     <div id="paginator">
-        <?php if ($page < $tpages) : ?>
-            <a id="btn-load" href="?url=home&submit=page&n=<?= $page ?>">Load photos</a>
+        <?php $prevpage = intval($_GET['n']) - 1;
+            if ($page == $tpages) : ?>
+            <a id="btn-load" href="?url=home&submit=page&n=<?= $prevpage ?>"><i class="fas fa-arrow-circle-left"></i></a>
+        <?php elseif ($page == 1) : ?>
+            <a id="btn-load" href="?url=home&submit=page&n=<?= $page ?>"><i class="fas fa-arrow-circle-right"></i></a>
+        <?php else : ?>
+            <a id="btn-load" href="?url=home&submit=page&n=<?= $prevpage ?>"><i class="fas fa-arrow-circle-left"></i></a>
+            <a id="btn-load" href="?url=home&submit=page&n=<?= $page ?>"><i class="fas fa-arrow-circle-right"></i></a>
         <?php endif; ?>
         <p>Page <?= $page ?> / <?= $tpages ?></p>
     </div>
