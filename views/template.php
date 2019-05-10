@@ -34,41 +34,43 @@
             <button onclick="displayForm('update-login')">Update login</button>
             <button onclick="displayForm('update-email')">Update email</button>
             <div class="form-zone">
-                <div class="form-body" id="notifications">
-                    <h2 style="text-align: center">Notifications 🔔</h2>
-                    <button id="btn-psh" class="off" onclick="setNotifSet()"></button>
-                </div>
-                <div class="form-body" id="update-passwd">
-                    <h2 style="text-align: center">Update your password 🆕</h2>
-                    <input type="password" class="input-box" id="oldPasswd" placeholder="Old password" required>
-                    <input type="password" class="input-box" id="newPasswd1" placeholder="New password" required>
-                    <input type="password" class="input-box" id="newPasswd2" placeholder="Confirm password" required>
-                    <button onclick="updatePasswd()" class="btn btn-primary">Update</button>
-                </div>
-                <div class="form-body" id="del-account">
-                    <h2 style="text-align: center">Delete your account 😭</h2>
-                    <form method="POST" action="<?= URL ?>?url=login&submit=delAccount">
-                        <input type="password" class="input-box" name="passwd" placeholder="Enter your password" required>
-                        <button type="submit" class="btn btn-primary">Delete</button>
-                    </form>
-                </div>
-                <div class="form-body" id="update-login">
-                    <h2 style="text-align: center">Update your login 🆕</h2>
-                    <input type="text" class="input-box" id="login" placeholder="Enter your new login" required>
-                    <button type="submit" onclick="updateLogin()" class="btn btn-primary">Update</button>
-                </div>
-                <div class="form-body" id="update-email">
-                    <h2 style="text-align: center">Update your email 🆕</h2>
-                    <form action="<?= URL ?>?url=login&submit=updateMail" method="post">
-                        <input type="email" class="input-box" name="email" placeholder="Enter your new email" required>
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </form>
-                </div>
-                <div class="info" id="setting-info">
-                    <?= $info ?>
-                </div>
-                <div class="error" id="setting-error">
-                    <?= $err ?>
+                <div class="form-body">
+                    <div id="notifications">
+                        <h2 style="text-align: center">Notifications 🔔</h2>
+                        <button id="btn-psh" class="off" onclick="setNotifSet()"></button>
+                    </div>
+                    <div id="update-passwd">
+                        <h2 style="text-align: center">Update your password 🆕</h2>
+                        <input type="password" class="input-box" id="oldPasswd" placeholder="Old password" required>
+                        <input type="password" class="input-box" id="newPasswd1" placeholder="New password" required>
+                        <input type="password" class="input-box" id="newPasswd2" placeholder="Confirm password" required>
+                        <button onclick="updatePasswd()" class="btn btn-primary">Update</button>
+                    </div>
+                    <div id="del-account">
+                        <h2 style="text-align: center">Delete your account 😭</h2>
+                        <form method="POST" action="<?= URL ?>?url=login&submit=delAccount">
+                            <input type="password" class="input-box" name="passwd" placeholder="Enter your password" required>
+                            <button type="submit" class="btn btn-primary">Delete</button>
+                        </form>
+                    </div>
+                    <div id="update-login">
+                        <h2 style="text-align: center">Update your login 🆕</h2>
+                        <input type="text" class="input-box" id="login" placeholder="Enter your new login" required>
+                        <button type="submit" onclick="updateLogin()" class="btn btn-primary">Update</button>
+                    </div>
+                    <div id="update-email">
+                        <h2 style="text-align: center">Update your email 🆕</h2>
+                        <form action="<?= URL ?>?url=login&submit=updateMail" method="post">
+                            <input type="email" class="input-box" name="email" placeholder="Enter your new email" required>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </form>
+                    </div>
+                    <div class="info" id="setting-info">
+                        <?= $info ?>
+                    </div>
+                    <div class="error" id="setting-error">
+                        <?= $err ?>
+                    </div>
                 </div>
             </div>
         </div>

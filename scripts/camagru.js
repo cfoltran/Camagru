@@ -88,7 +88,8 @@ document.getElementById('snap-push').addEventListener("click", () => {
             var clone = document.getElementsByTagName('article')[0].cloneNode(true);
             clone.style.display = 'block';
             clone.getElementsByTagName('img')[0].src = "public/asset/tmp.png";
-            document.getElementById('cards').appendChild(clone);
+            document.getElementById('cards').prepend(clone);
+            cam = true;
         }
     });
     xhr.send("img=" + dataURL + "&filter=" + filter);

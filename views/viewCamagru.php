@@ -49,7 +49,7 @@
                 <i class="fas fa-trash-alt"></i>
             </div>
         </article>
-        <?php foreach ($photos as $photo): $index++?>
+        <?php foreach (array_reverse($photos) as $photo): $index++?>
             <article>
                 <img class="article-img" src="data:image/jpeg;base64,<?= $photo->getPhoto()?>">
                 <div class="article-title">
