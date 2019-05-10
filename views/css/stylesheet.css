@@ -223,7 +223,7 @@ footer {
   padding: 0% 0 5% 0;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   #cam {
     position: relative;
     width: 100%;
@@ -382,6 +382,7 @@ article {
 }
 
 .modal-content {
+  width: 100%;
   background-color: #fefefe;
   margin: auto;
   padding: 20px;

@@ -12,14 +12,16 @@
             <?php if ($login != null): ?>
                 <input class="input-com comment" id="comment" type="text" placeholder="Leave a comment">
                 <button onclick="comment(<?= $pub->getId() ?>, '<?= $login ?>', <?= $pub->getIdUser() ?>)">Comment</button> 
-                <div class="comment" style="display: none"><p></p></div>
-                <?php
-                    foreach ($pub->getComments() as $comment): ?>
-                        <div class="comment">
-                            <p id="com-login"><b class="btn-blue"><?= $pub->getLoginOfComment($comment['id_user'])?></b></p>
-                            <p id="com-txt"> <?= $comment['comment'] ?></p>
-                        </div>
-                <?php endforeach; ?>
+                <div class="comment" style="display: none"><p id="com-login"></p></div>
+                <div id="comments">
+                    <?php
+                        foreach (array_reverse($pub->getComments()) as $comment): ?>
+                            <div class="comment">
+                                <p id="com-login"><b class="btn-blue"><?= $pub->getLoginOfComment($comment['id_user'])?></b></p>
+                                <p id="com-txt"> <?= $comment['comment'] ?></p>
+                            </div>
+                    <?php endforeach; ?>
+                </div>
             <?php else : ?>
                 <a href="<?= URL ?>?url=login">Log in</a> or <a href="<? URL ?>?url=register">register</a> to comment a publication
             <?php endif; ?>

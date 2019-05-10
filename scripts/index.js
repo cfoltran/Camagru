@@ -22,6 +22,8 @@ window.onclick = (event) => {
 }
 
 const hide = () => {
+    // document.getElementById('setting-error').style.display = 'none';
+    // document.getElementById('setting-info').style.display = 'none';
     document.getElementById('update-passwd').style.display = 'none';
     document.getElementById('del-account').style.display = 'none';
     document.getElementById('update-login').style.display = 'none';

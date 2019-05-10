@@ -64,12 +64,12 @@
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>
                 </div>
-            </div>
-            <div class="info" id="setting-info">
-                <?= $info ?>
-            </div>
-            <div class="error" id="setting-error">
-                <?= $err ?>
+                <div class="info" id="setting-info">
+                    <?= $info ?>
+                </div>
+                <div class="error" id="setting-error">
+                    <?= $err ?>
+                </div>
             </div>
         </div>
     </div>
