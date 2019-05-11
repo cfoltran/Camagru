@@ -83,6 +83,9 @@
             if ($this->_userManager->checkPassword($hash, $_SESSION['login']) === true) {
                 $hash = hash('whirlpool', $new);
                 $this->_userManager->updatePassword($hash, $_SESSION['login']);
+                echo 1;
+            } else {
+                echo 0;
             }
         }
 
@@ -99,7 +102,7 @@
             session_start();
             $login = $_POST['login'];
             $this->_userManager = new UserManager;
-            if ($this->_userManager->userExist($login) === false && !preg_match('/[^a-z_\-0-9]/i', $login)) {
+            if ($this->_userManager->userExist($login) === false && !preg_match('/[^a-z_\-0-9]/i', $login) && strlen($login) <= 8) {
                 $this->_userManager->updateLogin($login);
                 echo 0;
             } else {

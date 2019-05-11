@@ -51,13 +51,20 @@ const updatePasswd = () => {
         xhr.open('POST', '?url=login&submit=updatePasswd');
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.addEventListener('readystatechange', () => {
-            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+            if (xhr.response == 0) {
+                document.getElementById('setting-error').textContent = "Wrong password";
+                document.getElementById('setting-error').style.display = 'block';
+            } else {
                 document.getElementById('setting-info').textContent = "Your password has been updated";
+                document.getElementById('setting-info').style.display = 'block';
+                document.getElementById('setting-error').style.display = 'none';
             }
         });
         xhr.send("newPasswd=" + passwd + "&oldPasswd=" + document.getElementById('oldPasswd').value);
     } else {
         document.getElementById('setting-error').textContent = "Passwords doesn't match";
+        document.getElementById('setting-error').style.display = 'block';
+        document.getElementById('setting-info').style.display = 'none';
     }
 }
 
@@ -71,7 +78,7 @@ const updateLogin = () => {
         if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
             if (xhr.response == 1) {
                 document.getElementById('setting-error').style.display = 'block';
-                document.getElementById('setting-error').textContent = "This login already taken or there are wrong characters";
+                document.getElementById('setting-error').textContent = "This login already taken or wrong format (8 max, alphanumeric)";
             } else {
                 document.getElementById('setting-info').style.display = 'block';
                 document.getElementById('setting-info').textContent = "Your login has been updated";

@@ -45,7 +45,7 @@ function draw(video, context, width, height) {
 };
 
 var save = document.getElementById('snap-push');
-var upload = true;
+var upload = false;
 
 // Trigger photo take
 document.getElementById("snap").addEventListener("click", () => {
@@ -59,17 +59,35 @@ document.getElementById("snap").addEventListener("click", () => {
 });
 
 document.getElementById("import").addEventListener("click", () => {
-    document.getElementById('filter-preview').style.display = 'none';
     if (upload) {
-        video.style.display = 'none';
-        document.getElementById('import-zone').style.display = 'block';
+        canvas.style.display = 'none';
+        document.getElementById('import-zone').style.display = 'none';
         upload = false;
     } else {
-        video.style.display = 'block';
-        document.getElementById('import-zone').style.display = 'none';
+        canvas.style.display = 'none';
+        document.getElementById('import-zone').style.display = 'block';
         upload = true;
     }
 });
+
+var imageLoader = document.getElementById('import-img');
+    imageLoader.addEventListener('change', handleImage, false);
+var canvasUp = document.getElementById('canvas-up');
+var ctx = canvasUp.getContext('2d');
+
+function handleImage(e) {
+    var reader = new FileReader();
+    reader.onload = function(event){
+        var img = new Image();
+        img.onload = function(){
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+        }
+        img.src = event.target.result;
+    }
+    reader.readAsDataURL(e.target.files[0]);     
+}
 
 const setFilter = (elem) => {
     filter = elem;

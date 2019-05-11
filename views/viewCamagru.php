@@ -5,17 +5,16 @@
         <div id="video_box">
             <div>
                 <video id="video" width="640px" autoplay></video>
-                <canvas id="canvas" height="480px" width="640px"></canvas>        
+                <canvas id="canvas" height="480px" width="640px"></canvas>
             </div>
             <div class="info" id="photoInfo"></div>
         </div>
         <div id="import-zone">
-            <form action="<?= URL ?>?url=camagru&submit=import" method="post" enctype="multipart/form-data">
-                <label>Import PNG image
-                    <input type="file" name="img" accept="image/png">
-                </label>
-                <button type="submit">Import</button>
-            </form>
+            <label>Import PNG image
+                <input id="import-img" type="file" accept="image/png">
+            </label>
+            <canvas id="canvas-up" height="480px" width="640px"></canvas> 
+            <button type="submit">Import</button>
         </div>
         <div id="cam-button">
             <button id="snap" type="button" class="btn-round rounded"><i class="fas fa-camera"></i></button>
