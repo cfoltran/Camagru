@@ -84,6 +84,8 @@
                 $hash = hash('whirlpool', $new);
                 $this->_userManager->updatePassword($hash, $_SESSION['login']);
                 echo 1;
+            } else if (!preg_match('/^(?=.*[^\w])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/', $passwd1) || strlen($passwd1) < 8) {
+                echo 0;
             } else {
                 echo 0;
             }

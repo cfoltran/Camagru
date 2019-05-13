@@ -85,6 +85,9 @@ function handleImage(e) {
             canvas.width = img.width;
             canvas.height = img.height;
             ctx.drawImage(img, 0, 0);
+            if (filter) {
+                ctx.drawImage(filter, 0, 0, 1000, 1000, 0, 200, 640, 600);
+            }
         }
         img.src = event.target.result;
     }
@@ -93,6 +96,9 @@ function handleImage(e) {
 
 const setFilter = (elem) => {
     filter = elem;
+    if (filter && upload) {
+        ctx.drawImage(filter, 0, 0, 1000, 1000, 0, 200, 640, 600);
+    }
 }
 
 document.getElementById('snap-push').addEventListener("click", () => {

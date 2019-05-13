@@ -52,7 +52,7 @@ const updatePasswd = () => {
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.addEventListener('readystatechange', () => {
             if (xhr.response == 0) {
-                document.getElementById('setting-error').textContent = "Wrong password";
+                document.getElementById('setting-error').textContent = "Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.";
                 document.getElementById('setting-error').style.display = 'block';
             } else {
                 document.getElementById('setting-info').textContent = "Your password has been updated";

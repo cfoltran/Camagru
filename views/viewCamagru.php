@@ -1,6 +1,6 @@
 <div id="camagru">
     <?php session_start() ?>
-    <h1>Hello <?= $_SESSION['login'] ?></h1>
+    <h3>Hello <?= $_SESSION['login'] ?></h3>
     <section id="cam">
         <div id="video_box">
             <div>
@@ -14,8 +14,8 @@
                 <label>Import PNG image
                     <input id="import-img" name="img" type="file" accept="image/png">
                 </label>
-                <canvas id="canvas-up" height="480px" width="640px"></canvas>
                 <button type="submit">Import</button>
+                <canvas id="canvas-up" height="480px" width="640px"></canvas>
             </form>
         </div>
         <div id="cam-button">
