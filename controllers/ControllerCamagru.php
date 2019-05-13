@@ -58,11 +58,12 @@
 
         private function _importPhoto() {
             session_start();
-            $file = basename($_FILES["img"]["name"]);
-            $img = base64_encode(file_get_contents($_FILES['img']['tmp_name']));
-            $this->_photoManager = new PhotoManager;
-            $this->_photoManager->addImage($img, $_SESSION['id']);
-            // Redirect to Camagru page
+            if ($_FILES["img"]["name"]) {
+                $file = basename($_FILES["img"]["name"]);
+                $img = base64_encode(file_get_contents($_FILES['img']['tmp_name']));
+                $this->_photoManager = new PhotoManager;
+                $this->_photoManager->addImage($img, $_SESSION['id']);
+            }
             $this->camagruView();
         }
 

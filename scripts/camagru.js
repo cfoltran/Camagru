@@ -60,12 +60,14 @@ document.getElementById("snap").addEventListener("click", () => {
 
 document.getElementById("import").addEventListener("click", () => {
     if (upload) {
-        canvas.style.display = 'none';
+        canvas.style.display = 'block';
         document.getElementById('import-zone').style.display = 'none';
+        document.getElementById('snap').style.display = 'block';
         upload = false;
     } else {
         canvas.style.display = 'none';
         document.getElementById('import-zone').style.display = 'block';
+        document.getElementById('snap').style.display = 'none';
         upload = true;
     }
 });

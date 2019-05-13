@@ -10,11 +10,13 @@
             <div class="info" id="photoInfo"></div>
         </div>
         <div id="import-zone">
-            <label>Import PNG image
-                <input id="import-img" type="file" accept="image/png">
-            </label>
-            <canvas id="canvas-up" height="480px" width="640px"></canvas> 
-            <button type="submit">Import</button>
+            <form action="<?= URL ?>?url=camagru&submit=import" method="post" enctype="multipart/form-data">
+                <label>Import PNG image
+                    <input id="import-img" name="img" type="file" accept="image/png">
+                </label>
+                <canvas id="canvas-up" height="480px" width="640px"></canvas>
+                <button type="submit">Import</button>
+            </form>
         </div>
         <div id="cam-button">
             <button id="snap" type="button" class="btn-round rounded"><i class="fas fa-camera"></i></button>
@@ -22,22 +24,12 @@
             <button id="import" type="submit" name="pic" class="btn-round rounded"><i class="fas fa-upload"></i></button>
         </div>
         <div id="cam-filters">
-            <label>
-                <input type="radio" name="filter" id="filter">
-                <img src="<?= URL ?>public/asset/1.png" onclick="setFilter(this)">
-            </label>
-            <label>
-                <input type="radio" name="filter" id="filter">
-                <img src="<?= URL ?>public/asset/2.png" onclick="setFilter(this)">
-            </label>
-            <label>
-                <input type="radio" name="filter" id="filter">
-                <img src="<?= URL ?>public/asset/3.png" onclick="setFilter(this)">
-            </label>
-            <label>
-                <input type="radio" name="filter" id="filter">
-                <img src="<?= URL ?>public/asset/4.png" onclick="setFilter(this)">
-            </label>
+            <?php for ($i = 1; $i < 6; $i++): ?>
+                <label>
+                    <input type="radio" name="filter" id="filter">
+                    <img src="<?= URL ?>public/asset/<?= $i ?>.png" onclick="setFilter(this)">
+                </label>
+            <?php endfor; ?>
         </div>
     </section>
     <section id="cards" class="cards">
