@@ -37,7 +37,7 @@ video.addEventListener('play', function() {
 }, false);
 
 function draw(video, context, width, height) {
-    if (cam)
+    if (cam && !upload)
         context.drawImage(video, 0, 0, width, height);
     if (filter)
         context.drawImage(filter, 0, 0, 1000, 1000, 0, 200, 640, 600);
@@ -60,12 +60,10 @@ document.getElementById("snap").addEventListener("click", () => {
 
 document.getElementById("import").addEventListener("click", () => {
     if (upload) {
-        canvas.style.display = 'block';
         document.getElementById('import-zone').style.display = 'none';
         document.getElementById('snap').style.display = 'block';
         upload = false;
     } else {
-        canvas.style.display = 'none';
         document.getElementById('import-zone').style.display = 'block';
         document.getElementById('snap').style.display = 'none';
         upload = true;
@@ -74,8 +72,6 @@ document.getElementById("import").addEventListener("click", () => {
 
 var imageLoader = document.getElementById('import-img');
     imageLoader.addEventListener('change', handleImage, false);
-var canvasUp = document.getElementById('canvas-up');
-var ctx = canvasUp.getContext('2d');
 
 function handleImage(e) {
     var reader = new FileReader();
@@ -84,10 +80,7 @@ function handleImage(e) {
         img.onload = function(){
             canvas.width = img.width;
             canvas.height = img.height;
-            ctx.drawImage(img, 0, 0);
-            if (filter) {
-                ctx.drawImage(filter, 0, 0, 1000, 1000, 0, 200, 640, 600);
-            }
+            context.drawImage(img, 0, 0);
         }
         img.src = event.target.result;
     }
@@ -96,12 +89,9 @@ function handleImage(e) {
 
 const setFilter = (elem) => {
     filter = elem;
-    if (filter && upload) {
-        ctx.drawImage(filter, 0, 0, 1000, 1000, 0, 200, 640, 600);
-    }
 }
 
-document.getElementById('snap-push').addEventListener("click", () => {
+const addPhoto = () => {
     var canvas = document.getElementById('canvas');
     var dataURL = canvas.toDataURL();
     var xhr = new XMLHttpRequest();
@@ -122,7 +112,7 @@ document.getElementById('snap-push').addEventListener("click", () => {
         }
     });
     xhr.send("img=" + dataURL + "&filter=" + filter);
-});
+}
 
 // Drop the image on click
 const dropPhoto = (id_photo, index) => {
