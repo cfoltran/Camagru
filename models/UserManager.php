@@ -138,9 +138,9 @@
         }
 
         public function resetPasswd($hash, $key, $newKey) {
-            $query = "UPDATE users SET passwd = '$hash', confirmKey = $newKey WHERE confirmKey = $key";
+            $query = "UPDATE users SET passwd = '$hash', confirmKey = $newKey WHERE confirmKey = :key";
             $req = $this->getCo()->prepare($query);
-            $req->execute();
+            $req->execute([':key' => $key]);
             $req->closeCursor();
         }
 
