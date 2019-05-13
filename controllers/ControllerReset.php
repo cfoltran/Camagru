@@ -31,6 +31,12 @@
                 $err = "Passwords doesn't match";
                 $this->_view = new View('Reset');
                 $this->_view->generate(array('err' => $err));
+            } 
+            else if (!preg_match('/^(?=.*[^\w])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/', $passwd1) || strlen($passwd1) < 8) {
+                $err = 'Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.';
+                $this->_view = new View('Reset');
+                $this->_view->generate(array('err' => $err));
+                return;
             } else {
                 // Hash the user password
                 $newKey = '';

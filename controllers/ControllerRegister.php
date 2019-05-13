@@ -34,12 +34,13 @@
             $passwd1 = $_POST['passwd1'];
             $passwd2 = $_POST['passwd2'];
             // Check the login format
-            if (preg_match('/[^a-z_\-0-9]/i', $login)) {
-                $err = "Only use alphanumeric characters for your login";
+            if (preg_match('/[^a-z_\-0-9]/i', $login) && strlen($login) < 2 && strlen($login) > 8) {
+                $err = "Only use between 2 and 8 alphanumeric characters for your login";
                 $this->_view = new View('Register');
                 $this->_view->generate(array('err' => $err));
                 return;
             }
+            // Check the password strenght
             $this->_userManager = new UserManager;
             // Ask to database if the user already exist
             $userExist = $this->_userManager->userExist($login);
@@ -51,9 +52,12 @@
                 $err = "Passwords doesn't match";
                 $this->_view = new View('Register');
                 $this->_view->generate(array('err' => $err));
+            } else if (!preg_match('/^(?=.*[^\w])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/', $passwd1) || strlen($passwd1) < 8) {
+                $err = 'Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.';
+                $this->_view = new View('Register');
+                $this->_view->generate(array('err' => $err));
+                return;
             } else {
-                // Hash the user password
-                        // Let's add the little new
                 $key = '';
                 // Create the confirmation key for the mail
                 for ($i = 0; $i < 14; $i++) {
