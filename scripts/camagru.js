@@ -119,7 +119,7 @@ const dropPhoto = (id_photo, index) => {
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.addEventListener('readystatechange', () => {
         if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-            index.parentNode.parentNode.remove();
+            document.location.reload(true);
         }
     });
     xhr.send("idPhoto=" + id_photo);
