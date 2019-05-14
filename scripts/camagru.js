@@ -105,9 +105,7 @@ const addPhoto = () => {
             clone.style.display = 'block';
             clone.getElementsByTagName('img')[0].src = "public/asset/tmp.png";
             document.getElementById('cards').prepend(clone);
-            if (document.getElementsByTagName('article').length == 2) {
-                document.location.reload(true);
-            }
+            document.location.reload(true);
             cam = true;
         }
     });
