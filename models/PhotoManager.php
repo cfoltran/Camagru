@@ -123,9 +123,9 @@ class PhotoManager extends Model {
         $this->dropLikes($id_photo);
         $this->dropComments($id_photo);
         // Delete the photo
-        $query = "DELETE FROM photos WHERE id_photo = $id_photo";
+        $query = "DELETE FROM photos WHERE id_photo = :id_photo";
         $req = $this->getCo()->prepare($query);
-        $req->execute();
+        $req->execute([':id_photo' => $id_photo]);
         $req->closeCursor();
     }
 

@@ -114,12 +114,13 @@ const addPhoto = () => {
 
 // Drop the image on click
 const dropPhoto = (id_photo, index) => {
+    alert(id_photo);
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '?url=camagru&submit=del');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.addEventListener('readystatechange', () => {
         if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-            document.location.reload(true);
+            index.parentNode.parentNode.remove();
         }
     });
     xhr.send("idPhoto=" + id_photo);
