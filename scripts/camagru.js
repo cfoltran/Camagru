@@ -114,7 +114,6 @@ const addPhoto = () => {
 
 // Drop the image on click
 const dropPhoto = (id_photo, index) => {
-    alert(id_photo);
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '?url=camagru&submit=del');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
