@@ -67,7 +67,7 @@
                 $this->_userManager->addUser($firstname, $lastname, $login, $mail, $hash, $key);
                 $this->_sendConfirmationMail($login, $mail, $key);
                 $this->_view = new View('Login');
-                $this->_view->generate(array('info' => "Check your mailbox before signin"));
+                $this->_view->generate(array('info' => "Check your mailbox (SPAM) before signin"));
             }
         }
 
